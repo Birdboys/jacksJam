@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwumcsru8q88u"]
+
+[ext_resource type="Script" uid="uid://duaex78lwrtu3" path="res://scripts/clicker_button.gd" id="1_6kgqr"]
+
+[node name="clickerButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+script = ExtResource("1_6kgqr")

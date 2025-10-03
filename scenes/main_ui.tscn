@@ -1,0 +1,212 @@
+[gd_scene load_steps=9 format=3 uid="uid://g7in0hqcsvgm"]
+
+[ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fnul3"]
+[ext_resource type="Texture2D" uid="uid://iv7lq5thbqbp" path="res://assets/temp/flashlight_off.png" id="2_513t2"]
+[ext_resource type="Script" uid="uid://d4btmc2hn6mos" path="res://scripts/main_ui.gd" id="2_e6fyy"]
+[ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="3_46p8p"]
+[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="3_scoti"]
+[ext_resource type="Texture2D" uid="uid://dx434im04v6ri" path="res://assets/temp/flashlight_on.png" id="4_j6a7c"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="4_kyx1g"]
+[ext_resource type="Texture2D" uid="uid://sh7nx7xrrx8q" path="res://assets/jack.jpg" id="4_okuri"]
+
+[node name="mainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_fnul3")
+script = ExtResource("2_e6fyy")
+
+[node name="uiBG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"mainBG"
+
+[node name="uiMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="uiCont" type="VBoxContainer" parent="uiMargin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="topHbox" type="HBoxContainer" parent="uiMargin/uiCont"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 0
+
+[node name="roomPanel" type="Panel" parent="uiMargin/uiCont/topHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_type_variation = &"uiPanel"
+
+[node name="roomMargin" type="MarginContainer" parent="uiMargin/uiCont/topHbox/roomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(616, 218)
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="roomTexture" type="TextureRect" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin"]
+layout_mode = 2
+texture = ExtResource("3_46p8p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="roomButtons" type="Control" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture"]
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 502.0
+
+[node name="clickerButton" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture/roomButtons" instance=ExtResource("4_kyx1g")]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 310.0
+offset_right = 459.0
+offset_bottom = 361.0
+hover_text = "enter the house"
+button_id = "window_button_1"
+
+[node name="clickerButton2" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture/roomButtons" instance=ExtResource("4_kyx1g")]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 119.0
+offset_right = 660.0
+offset_bottom = 170.0
+hover_text = "testerton wahooo"
+button_id = "rararara"
+
+[node name="roomButtons2" type="Control" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="clickerButton" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture/roomButtons2" instance=ExtResource("4_kyx1g")]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 195.0
+offset_right = 447.0
+offset_bottom = 240.0
+hover_text = "spooky window"
+
+[node name="clickerButton2" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture/roomButtons2" instance=ExtResource("4_kyx1g")]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 142.0
+offset_right = 646.0
+offset_bottom = 187.0
+hover_text = "othber spooky window"
+
+[node name="facePanel" type="Panel" parent="uiMargin/uiCont/topHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"uiPanel"
+
+[node name="faceMargin" type="MarginContainer" parent="uiMargin/uiCont/topHbox/facePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="faceTexture" type="TextureRect" parent="uiMargin/uiCont/topHbox/facePanel/faceMargin"]
+layout_mode = 2
+texture = ExtResource("4_okuri")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="botHbox" type="HBoxContainer" parent="uiMargin/uiCont"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="textPanel" type="Panel" parent="uiMargin/uiCont/botHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_type_variation = &"uiPanel"
+
+[node name="textMargin" type="MarginContainer" parent="uiMargin/uiCont/botHbox/textPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="descriptionText" type="Label" parent="uiMargin/uiCont/botHbox/textPanel/textMargin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("3_scoti")
+theme_override_font_sizes/font_size = 24
+text = "Oh shid it's getting spookers in here....."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="lightPanel" type="Panel" parent="uiMargin/uiCont/botHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"uiPanel"
+
+[node name="buttonMargin" type="MarginContainer" parent="uiMargin/uiCont/botHbox/lightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="flashlightButton" type="TextureButton" parent="uiMargin/uiCont/botHbox/lightPanel/buttonMargin"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("2_513t2")
+texture_pressed = ExtResource("4_j6a7c")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="mouseLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

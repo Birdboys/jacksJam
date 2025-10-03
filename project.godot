@@ -11,5 +11,12 @@ config_version=5
 [application]
 
 config/name="jacksJamGame"
+run/main_scene="uid://g7in0hqcsvgm"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://sh7nx7xrrx8q"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
