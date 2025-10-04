@@ -100,31 +100,6 @@ offset_bottom = 170.0
 hover_text = "testerton wahooo"
 button_id = "rararara"
 
-[node name="roomButtons2" type="Control" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="clickerButton" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture/roomButtons2" instance=ExtResource("4_kyx1g")]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 195.0
-offset_right = 447.0
-offset_bottom = 240.0
-hover_text = "spooky window"
-
-[node name="clickerButton2" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin/roomTexture/roomButtons2" instance=ExtResource("4_kyx1g")]
-layout_mode = 0
-offset_left = 616.0
-offset_top = 142.0
-offset_right = 646.0
-offset_bottom = 187.0
-hover_text = "othber spooky window"
-
 [node name="facePanel" type="Panel" parent="uiMargin/uiCont/topHbox"]
 layout_mode = 2
 size_flags_horizontal = 3

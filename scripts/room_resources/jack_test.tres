@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://bk150ih34g11p"]
+
+[ext_resource type="PackedScene" uid="uid://dnsp4m4bx58e4" path="res://scenes/room_scenes/jack_scene_test.tscn" id="1_3s7q7"]
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_32ugi"]
+
+[resource]
+script = ExtResource("1_32ugi")
+room_scene = ExtResource("1_3s7q7")
+room_text = "oh shit its jack"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

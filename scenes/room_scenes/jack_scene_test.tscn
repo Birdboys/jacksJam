@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnsp4m4bx58e4"]
+
+[ext_resource type="Texture2D" uid="uid://sh7nx7xrrx8q" path="res://assets/jack.jpg" id="1_tb5rm"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_glrng"]
+
+[node name="roomTexture" type="TextureRect"]
+texture = ExtResource("1_tb5rm")
+expand_mode = 1
+
+[node name="roomButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 502.0
+
+[node name="clickerButton2" parent="roomButtons" instance=ExtResource("2_glrng")]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 163.0
+offset_right = 479.0
+offset_bottom = 308.0
+hover_text = "got your nose"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://bcjxhdnbo8yry"]
+
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_6vxe5"]
+[ext_resource type="PackedScene" uid="uid://5vrqkyhqxiv" path="res://scenes/room_scenes/hospital_dark_test.tscn" id="1_ea4qg"]
+
+[resource]
+script = ExtResource("1_6vxe5")
+room_scene = ExtResource("1_ea4qg")
+room_text = "jeepers its dark in here, and im not alone....."
+room_flashlight_on_event = "normal_hospital"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

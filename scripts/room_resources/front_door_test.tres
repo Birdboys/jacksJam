@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://b3det1ah2rh8y"]
+
+[ext_resource type="PackedScene" uid="uid://c4ovfy2jflmpc" path="res://scenes/room_scenes/front_door_test.tscn" id="1_7d8lt"]
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_feess"]
+
+[resource]
+script = ExtResource("1_feess")
+room_scene = ExtResource("1_7d8lt")
+room_text = "oh wowwy this house is spooky"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

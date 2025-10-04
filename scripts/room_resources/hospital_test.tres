@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://cbvntc0lp5s6w"]
+
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_rrfwf"]
+[ext_resource type="PackedScene" uid="uid://d10g8euotwbqt" path="res://scenes/room_scenes/hospital_test.tscn" id="1_uxfj2"]
+
+[resource]
+script = ExtResource("1_rrfwf")
+room_scene = ExtResource("1_uxfj2")
+room_text = "oh my god its a hospital oh fuck"
+room_flashlight_off_event = "spooky_hospital"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

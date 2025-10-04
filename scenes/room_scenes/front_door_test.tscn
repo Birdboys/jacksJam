@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ovfy2jflmpc"]
+
+[ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="1_2bj3l"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_7a0ik"]
+
+[node name="roomTexture" type="TextureRect"]
+texture = ExtResource("1_2bj3l")
+expand_mode = 1
+
+[node name="roomButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 502.0
+
+[node name="clickerButton" parent="roomButtons" instance=ExtResource("2_7a0ik")]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 301.0
+offset_right = 462.0
+offset_bottom = 366.0
+hover_text = "enter the house"
+button_id = "front_door_button"
+
+[node name="clickerButton2" parent="roomButtons" instance=ExtResource("2_7a0ik")]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 139.0
+offset_right = 714.0
+offset_bottom = 190.0
+hover_text = "testerton wahooo"

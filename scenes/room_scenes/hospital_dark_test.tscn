@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://5vrqkyhqxiv"]
+
+[ext_resource type="Texture2D" uid="uid://fvf78cxuefs1" path="res://assets/temp/spooky_room_dark.jpg" id="1_2w25n"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_r770e"]
+
+[node name="roomTexture" type="TextureRect"]
+texture = ExtResource("1_2w25n")
+expand_mode = 1
+
+[node name="roomButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 502.0
+
+[node name="clickerButton" parent="roomButtons" instance=ExtResource("2_r770e")]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 282.0
+offset_right = 348.0
+offset_bottom = 344.0
+hover_text = "its a pillow"
+button_id = "pillow"
