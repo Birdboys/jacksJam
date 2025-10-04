@@ -6,6 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rvhvu"]
 shader = ExtResource("1_7a0ik")
+shader_parameter/flashlight_distance = 100.0
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_rvhvu")

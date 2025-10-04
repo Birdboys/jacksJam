@@ -26,3 +26,10 @@ window/size/viewport_height=720
 window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[shader_globals]
+
+mouse_pos={
+"type": "vec2",
+"value": Vector2(200, 0)
+}

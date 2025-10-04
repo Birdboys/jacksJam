@@ -13,9 +13,10 @@ var roomButtons
 func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	loadRoom("front_door_test")
-	
+	#RenderingServer.global_shader_parameter_set("mouse_pos", get_global_mouse_position)
 func _process(delta: float) -> void:
 	mouseLabel.global_position = get_global_mouse_position() + Vector2(16, 16)
+	RenderingServer.global_shader_parameter_set("mouse_pos", get_global_mouse_position())
 
 func toggleFlashlight(on: bool):
 	flashlight_on = on
