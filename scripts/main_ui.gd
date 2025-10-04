@@ -6,14 +6,23 @@ extends Control
 @onready var flashlightButton := $uiMargin/uiCont/botHbox/lightPanel/buttonMargin/flashlightButton
 @onready var mouseLabel := $mouseLabel
 
+@onready var taskMargin := $uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin
+@onready var taskVbox := $uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin/taskVbox
+@onready var inventoryMargin := $uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin
+@onready var panelTabs := $uiMargin/uiCont/topHbox/taskInventoryPanel/togglePanelButtons/panelTabs
+
+var tasks := {}
 var flashlight_on := false
 var current_room_resource : RoomResource
 var roomButtons
 
 func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
+	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	loadRoom("front_door_test")
-	#RenderingServer.global_shader_parameter_set("mouse_pos", get_global_mouse_position)
+	addTask("enter_house", "Enter house")
+	toggleTaskInventoryPanels(0)
+	
 func _process(delta: float) -> void:
 	mouseLabel.global_position = get_global_mouse_position() + Vector2(16, 16)
 	RenderingServer.global_shader_parameter_set("mouse_pos", get_global_mouse_position())
@@ -74,7 +83,9 @@ func roomButtonPressed(button_event: String):
 	match button_event:
 		"bed": print("do spooky thing")
 		"clock": print("does spookier thing")
-		"front_door_button": loadRoom("hospital_test")
+		"front_door_button": 
+			loadRoom("hospital_test")
+			completeTask("enter_house")
 		"hospital_door": loadRoom("front_door_test")
 		_: pass
 		
@@ -89,3 +100,26 @@ func handleRoomEnterEvent(event_id):
 	match event_id:
 		"play_spooky_footstep": 
 			AudioHandler.playSound("footsteps", Vector3.LEFT)
+
+func toggleTaskInventoryPanels(tab_id):
+	print("TAB: ", tab_id)
+	if tab_id == 0:
+		taskMargin.visible = true
+		inventoryMargin.visible = false
+	else:
+		taskMargin.visible = false
+		inventoryMargin.visible = true
+		
+func addTask(task_id, task_text):
+	var new_task_label = Label.new()
+	taskVbox.add_child(new_task_label)
+	new_task_label.theme_type_variation = "taskUnfinished"
+	new_task_label.text = task_text
+	tasks[task_id] = new_task_label
+
+func completeTask(task_id):
+	tasks[task_id].theme_type_variation = "taskFinished"
+	
+func clearTasks():
+	for t in tasks:
+		tasks[t].queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://g7in0hqcsvgm"]
+[gd_scene load_steps=19 format=3 uid="uid://g7in0hqcsvgm"]
 
 [ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fnul3"]
 [ext_resource type="Texture2D" uid="uid://iv7lq5thbqbp" path="res://assets/temp/flashlight_off.png" id="2_513t2"]
@@ -8,10 +8,27 @@
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="3_scoti"]
 [ext_resource type="Texture2D" uid="uid://dx434im04v6ri" path="res://assets/temp/flashlight_on.png" id="4_j6a7c"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="4_kyx1g"]
-[ext_resource type="Texture2D" uid="uid://sh7nx7xrrx8q" path="res://assets/jack.jpg" id="4_okuri"]
+[ext_resource type="Texture2D" uid="uid://ci6rd1oirhdva" path="res://assets/temp/lighter.jpg" id="6_kyx1g"]
+[ext_resource type="PackedScene" uid="uid://cvbm6ls4l2kwo" path="res://scenes/inventory_item.tscn" id="6_r8eje"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r8eje"]
 shader = ExtResource("3_kyx1g")
+shader_parameter/flashlight_distance = 100.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okuri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kyx1g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8eje"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0apq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_82kx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jnl7h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hst8y"]
 
 [node name="mainUI" type="Control"]
 layout_mode = 3
@@ -70,10 +87,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(616, 218)
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="roomTexture" type="TextureRect" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin"]
 material = SubResource("ShaderMaterial_r8eje")
@@ -105,12 +122,12 @@ offset_bottom = 170.0
 hover_text = "testerton wahooo"
 button_id = "rararara"
 
-[node name="facePanel" type="Panel" parent="uiMargin/uiCont/topHbox"]
+[node name="taskInventoryPanel" type="Panel" parent="uiMargin/uiCont/topHbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"uiPanel"
 
-[node name="faceMargin" type="MarginContainer" parent="uiMargin/uiCont/topHbox/facePanel"]
+[node name="taskMargin" type="MarginContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,11 +139,77 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="faceTexture" type="TextureRect" parent="uiMargin/uiCont/topHbox/facePanel/faceMargin"]
+[node name="taskVbox" type="VBoxContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin"]
 layout_mode = 2
-texture = ExtResource("4_okuri")
-expand_mode = 1
-stretch_mode = 5
+theme_override_constants/separation = 16
+
+[node name="inventoryMargin" type="MarginContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="inventoryGrid" type="GridContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="inventoryItem" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
+layout_mode = 2
+texture = ExtResource("6_kyx1g")
+
+[node name="inventoryItem2" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
+layout_mode = 2
+texture = ExtResource("6_kyx1g")
+
+[node name="inventoryItem3" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
+layout_mode = 2
+texture = ExtResource("6_kyx1g")
+
+[node name="inventoryItem4" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
+layout_mode = 2
+texture = ExtResource("6_kyx1g")
+
+[node name="togglePanelButtons" type="HBoxContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="panelTabs" type="TabBar" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/togglePanelButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/drop_mark_color = Color(1, 1, 1, 0)
+theme_override_colors/font_selected_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_colors/font_hovered_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_colors/font_unselected_color = Color(0.8509804, 0.7254902, 0.50980395, 0.5019608)
+theme_override_constants/tab_separation = 32
+theme_override_fonts/font = ExtResource("3_scoti")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_okuri")
+theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_kyx1g")
+theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_r8eje")
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_r0apq")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_82kx8")
+theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_jnl7h")
+theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_hst8y")
+current_tab = 0
+tab_alignment = 1
+scrolling_enabled = false
+tab_count = 2
+tab_0/title = "TASKS"
+tab_1/title = "INVENTORY"
 
 [node name="botHbox" type="HBoxContainer" parent="uiMargin/uiCont"]
 layout_mode = 2
