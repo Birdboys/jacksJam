@@ -72,6 +72,7 @@ func unloadCurrentRoom():
 	roomMargin.get_child(0).queue_free()
 	descriptionText.text = ""
 	clearMouseText()
+	clearHeldItem()
 	
 func getRoomButtons():
 	for child in roomButtons.get_children():
@@ -99,9 +100,8 @@ func roomButtonPressed(button_event: String):
 		"bed": print("do spooky thing")
 		"clock": print("does spookier thing")
 		"pillow":
-			if current_item == "lighter":
-				clearText()
-				loadText("YOU BURNT THE PILLOW, OH LORD WHY")
+			toggleDark(false)
+			loadRoom("kitchen_test")
 		"front_door_button": 
 			loadRoom("hospital_test")
 			completeTask("enter_house")

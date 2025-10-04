@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://3kspkm1fclry"]
+
+[ext_resource type="PackedScene" uid="uid://bdrvqo8semc75" path="res://scenes/room_scenes/kitchen_test.tscn" id="1_3olvp"]
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_8wdnd"]
+
+[resource]
+script = ExtResource("1_8wdnd")
+room_scene = ExtResource("1_3olvp")
+room_text = "What a mess, not ordering food from this kitchen"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"
