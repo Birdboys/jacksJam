@@ -33,3 +33,7 @@ mouse_pos={
 "type": "vec2",
 "value": Vector2(200, 0)
 }
+do_flashlight={
+"type": "bool",
+"value": false
+}

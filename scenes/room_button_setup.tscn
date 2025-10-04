@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d36adc6pjlby3"]
+[gd_scene load_steps=5 format=3 uid="uid://d36adc6pjlby3"]
 
 [ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="1_xjlhq"]
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xx7ry"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_xx7ry"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
+shader = ExtResource("1_xx7ry")
+shader_parameter/flashlight_distance = 100.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomButtonSetup" type="Control"]
 layout_mode = 3
@@ -30,6 +36,7 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="roomTexture" type="TextureRect" parent="roomMargin"]
+material = SubResource("ShaderMaterial_0cpwa")
 layout_mode = 2
 texture = ExtResource("1_xjlhq")
 expand_mode = 1

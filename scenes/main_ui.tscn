@@ -224,7 +224,6 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("3_scoti")
 theme_override_font_sizes/font_size = 24
-text = "Oh shid it's getting spookers in here....."
 vertical_alignment = 1
 autowrap_mode = 2
 

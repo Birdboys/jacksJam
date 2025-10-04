@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://5vrqkyhqxiv"]
+[gd_scene load_steps=5 format=3 uid="uid://5vrqkyhqxiv"]
 
 [ext_resource type="Texture2D" uid="uid://fvf78cxuefs1" path="res://assets/temp/spooky_room_dark.jpg" id="1_2w25n"]
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_r770e"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_r770e"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d523u"]
+shader = ExtResource("1_r770e")
+shader_parameter/flashlight_distance = 100.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+
 [node name="roomTexture" type="TextureRect"]
+material = SubResource("ShaderMaterial_d523u")
 texture = ExtResource("1_2w25n")
 expand_mode = 1
 

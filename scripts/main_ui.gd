@@ -108,7 +108,10 @@ func roomButtonPressed(button_event: String):
 			removeInventoryItem("key")
 			addInventoryItem("lighter", load("res://assets/temp/lighter.jpg"))
 			addInventoryItem("grabber", load("res://assets/temp/grabber.jpg"))
-		"hospital_door": loadRoom("front_door_test")
+			toggleDark(true)
+		"hospital_door": 
+			toggleDark(false)
+			loadRoom("front_door_test")
 		_: pass
 		
 func handleFlashlightEvent(event_id):
@@ -184,3 +187,6 @@ func clearHeldItem():
 	print("CLEARING ITEM")
 	mouseItem.texture = null
 	current_item = ""
+
+func toggleDark(on: bool):
+	RenderingServer.global_shader_parameter_set("do_flashlight", on)

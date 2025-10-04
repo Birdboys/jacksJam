@@ -2,6 +2,7 @@ shader_type canvas_item;
 render_mode world_vertex_coords;
 
 global uniform vec2 mouse_pos;
+global uniform bool do_flashlight = false;
 uniform float flashlight_distance = 100.0;
 uniform vec4 dark_color = vec4(0, 0.016, 0.071, 1);
 varying vec2 vertex_pos;
@@ -13,11 +14,13 @@ void vertex() {
 }
 
 void fragment() {
-	float dist = sqrt(pow(vertex_pos.x-mouse_pos.x, 2) + pow(vertex_pos.y-mouse_pos.y, 2));
-	if (dist > flashlight_distance){
-		COLOR = dark_color;
-	} else {
-		//COLOR = COLOR * pow((flashlight_distance-dist)/flashlight_distance,2);
+	if (do_flashlight) {
+		float dist = sqrt(pow(vertex_pos.x-mouse_pos.x, 2) + pow(vertex_pos.y-mouse_pos.y, 2));
+		if (dist > flashlight_distance){
+			COLOR = dark_color;
+		} else {
+			//COLOR = COLOR * pow((flashlight_distance-dist)/flashlight_distance,2);
+		}
 	}
 }
 
