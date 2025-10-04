@@ -7,5 +7,6 @@
 script = ExtResource("1_rrfwf")
 room_scene = ExtResource("1_uxfj2")
 room_text = "oh my god its a hospital oh fuck"
+room_enter_event = "play_spooky_footstep"
 room_flashlight_off_event = "spooky_hospital"
 metadata/_custom_type_script = "uid://3ctpp3cj2op5"

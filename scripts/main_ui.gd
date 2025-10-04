@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	mouseLabel.global_position = get_global_mouse_position() + Vector2(16, 16)
-	
+
 func toggleFlashlight(on: bool):
 	flashlight_on = on
 	if on: 
@@ -34,6 +34,8 @@ func loadRoom(room_name):
 	
 	var new_room_text = new_room_resource.room_text
 	loadText(new_room_text)
+	
+	handleRoomEnterEvent(new_room_resource.room_enter_event)
 	
 	current_room_resource = new_room_resource
 	
@@ -62,7 +64,6 @@ func loadText(t):
 		await get_tree().create_timer(0.05).timeout
 	
 func updateMouseText(t):
-	print("MOUSE ENTERED BUTTON ", t)
 	mouseLabel.text = t
 	
 func clearMouseText():
@@ -83,3 +84,7 @@ func handleFlashlightEvent(event_id):
 		"hallway_1_light": loadRoom("hallway_1_dark")
 		"hallway_1_dark": loadRoom("hallway_2_light")
 		
+func handleRoomEnterEvent(event_id):
+	match event_id:
+		"play_spooky_footstep": 
+			AudioHandler.playSound("footsteps", Vector3.LEFT)

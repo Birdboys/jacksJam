@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4ovfy2jflmpc"]
+[gd_scene load_steps=5 format=3 uid="uid://c4ovfy2jflmpc"]
 
 [ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="1_2bj3l"]
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_7a0ik"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_7a0ik"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvhvu"]
+shader = ExtResource("1_7a0ik")
+
 [node name="roomTexture" type="TextureRect"]
+material = SubResource("ShaderMaterial_rvhvu")
 texture = ExtResource("1_2bj3l")
 expand_mode = 1
 

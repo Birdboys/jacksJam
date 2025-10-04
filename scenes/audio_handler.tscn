@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7x603v3oi157"]
+
+[ext_resource type="Script" uid="uid://c2qnmbhoaud1h" path="res://scripts/audio_handler.gd" id="1_hk86o"]
+
+[node name="audioHandler" type="Camera3D"]
+script = ExtResource("1_hk86o")
+
+[node name="playerQueue" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="playerQueue"]

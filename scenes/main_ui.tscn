@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://g7in0hqcsvgm"]
+[gd_scene load_steps=11 format=3 uid="uid://g7in0hqcsvgm"]
 
 [ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fnul3"]
 [ext_resource type="Texture2D" uid="uid://iv7lq5thbqbp" path="res://assets/temp/flashlight_off.png" id="2_513t2"]
 [ext_resource type="Script" uid="uid://d4btmc2hn6mos" path="res://scripts/main_ui.gd" id="2_e6fyy"]
 [ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="3_46p8p"]
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="3_kyx1g"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="3_scoti"]
 [ext_resource type="Texture2D" uid="uid://dx434im04v6ri" path="res://assets/temp/flashlight_on.png" id="4_j6a7c"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="4_kyx1g"]
 [ext_resource type="Texture2D" uid="uid://sh7nx7xrrx8q" path="res://assets/jack.jpg" id="4_okuri"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8eje"]
+shader = ExtResource("3_kyx1g")
 
 [node name="mainUI" type="Control"]
 layout_mode = 3
@@ -72,6 +76,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="roomTexture" type="TextureRect" parent="uiMargin/uiCont/topHbox/roomPanel/roomMargin"]
+material = SubResource("ShaderMaterial_r8eje")
 layout_mode = 2
 texture = ExtResource("3_46p8p")
 expand_mode = 1
