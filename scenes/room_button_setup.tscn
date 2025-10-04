@@ -38,6 +38,7 @@ expand_mode = 1
 anchors_preset = 0
 offset_right = 922.0
 offset_bottom = 502.0
+mouse_filter = 1
 
 [node name="clickerButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("2_xx7ry")]
 layout_mode = 0

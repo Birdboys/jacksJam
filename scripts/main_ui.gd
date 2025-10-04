@@ -5,6 +5,7 @@ extends Control
 @onready var descriptionText := $uiMargin/uiCont/botHbox/textPanel/textMargin/descriptionText
 @onready var flashlightButton := $uiMargin/uiCont/botHbox/lightPanel/buttonMargin/flashlightButton
 @onready var mouseLabel := $mouseLabel
+@onready var mouseItem := $mouseItem
 
 @onready var taskMargin := $uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin
 @onready var taskVbox := $uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin/taskVbox
@@ -16,11 +17,13 @@ var tasks := {}
 var inventory_items := {}
 var flashlight_on := false
 var current_room_resource : RoomResource
+var current_item := ""
 var roomButtons
 
 func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
+	roomMargin.gui_input.connect(checkClearHeldItem)
 	loadRoom("front_door_test")
 	addTask("enter_house", "Enter house")
 	toggleTaskInventoryPanels(0)
@@ -28,8 +31,15 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	mouseLabel.global_position = get_global_mouse_position() + Vector2(16, 16)
+	mouseItem.global_position = get_global_mouse_position() + Vector2(-36, -36)
 	RenderingServer.global_shader_parameter_set("mouse_pos", get_global_mouse_position())
 
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		clearHeldItem()
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
+		clearHeldItem()
+		
 func toggleFlashlight(on: bool):
 	flashlight_on = on
 	if on: 
@@ -70,7 +80,9 @@ func getRoomButtons():
 			child.mouse_entered.connect(updateMouseText.bind(child.hover_text))
 			child.mouse_exited.connect(clearMouseText)
 			child.pressed.connect(roomButtonPressed.bind(child.button_id))
-
+func clearText():
+	descriptionText.text = ""
+	
 func loadText(t):
 	for x in range(len(t)):
 		descriptionText.text += t[x]
@@ -86,6 +98,10 @@ func roomButtonPressed(button_event: String):
 	match button_event:
 		"bed": print("do spooky thing")
 		"clock": print("does spookier thing")
+		"pillow":
+			if current_item == "lighter":
+				clearText()
+				loadText("YOU BURNT THE PILLOW, OH LORD WHY")
 		"front_door_button": 
 			loadRoom("hospital_test")
 			completeTask("enter_house")
@@ -136,9 +152,11 @@ func clearTasks():
 		tasks[t].queue_free()
 
 func addInventoryItem(item_id, item_image):
-	var new_inventory_item = load("res://scenes/inventory_item.tscn").instantiate() as TextureRect
+	var new_inventory_item = load("res://scenes/inventory_item.tscn").instantiate() as InventoryItem
 	inventoryGrid.add_child(new_inventory_item)
 	new_inventory_item.texture = item_image
+	new_inventory_item.item_id = item_id
+	new_inventory_item.use_item.connect(useInventoryItem)
 	inventory_items[item_id] = new_inventory_item
 
 func removeInventoryItem(item_id):
@@ -150,3 +168,19 @@ func clearInventoryItems():
 	for i in inventory_items:
 		inventory_items[i].queue_free()
 	inventory_items = {}
+
+func useInventoryItem(item_id):
+	if item_id not in inventory_items: return
+	mouseItem.texture = inventory_items[item_id].texture
+	current_item = item_id
+
+func checkClearHeldItem(event: InputEvent):
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		clearHeldItem()
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
+		clearHeldItem()
+	
+func clearHeldItem():
+	print("CLEARING ITEM")
+	mouseItem.texture = null
+	current_item = ""

@@ -7,6 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rvhvu"]
 shader = ExtResource("1_7a0ik")
 shader_parameter/flashlight_distance = 100.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_rvhvu")
@@ -17,6 +18,7 @@ expand_mode = 1
 anchors_preset = 0
 offset_right = 922.0
 offset_bottom = 502.0
+mouse_filter = 1
 
 [node name="clickerButton" parent="roomButtons" instance=ExtResource("2_7a0ik")]
 layout_mode = 0
