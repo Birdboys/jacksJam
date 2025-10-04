@@ -9,9 +9,11 @@ extends Control
 @onready var taskMargin := $uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin
 @onready var taskVbox := $uiMargin/uiCont/topHbox/taskInventoryPanel/taskMargin/taskVbox
 @onready var inventoryMargin := $uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin
+@onready var inventoryGrid := $uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid
 @onready var panelTabs := $uiMargin/uiCont/topHbox/taskInventoryPanel/togglePanelButtons/panelTabs
 
 var tasks := {}
+var inventory_items := {}
 var flashlight_on := false
 var current_room_resource : RoomResource
 var roomButtons
@@ -22,6 +24,7 @@ func _ready() -> void:
 	loadRoom("front_door_test")
 	addTask("enter_house", "Enter house")
 	toggleTaskInventoryPanels(0)
+	addInventoryItem("key", load("res://assets/temp/key.jpeg"))
 	
 func _process(delta: float) -> void:
 	mouseLabel.global_position = get_global_mouse_position() + Vector2(16, 16)
@@ -86,6 +89,9 @@ func roomButtonPressed(button_event: String):
 		"front_door_button": 
 			loadRoom("hospital_test")
 			completeTask("enter_house")
+			removeInventoryItem("key")
+			addInventoryItem("lighter", load("res://assets/temp/lighter.jpg"))
+			addInventoryItem("grabber", load("res://assets/temp/grabber.jpg"))
 		"hospital_door": loadRoom("front_door_test")
 		_: pass
 		
@@ -119,7 +125,28 @@ func addTask(task_id, task_text):
 
 func completeTask(task_id):
 	tasks[task_id].theme_type_variation = "taskFinished"
+
+func removeTask(task_id):
+	if task_id not in tasks: return
+	tasks[task_id].queue_free()
+	tasks.erase(task_id)
 	
 func clearTasks():
 	for t in tasks:
 		tasks[t].queue_free()
+
+func addInventoryItem(item_id, item_image):
+	var new_inventory_item = load("res://scenes/inventory_item.tscn").instantiate() as TextureRect
+	inventoryGrid.add_child(new_inventory_item)
+	new_inventory_item.texture = item_image
+	inventory_items[item_id] = new_inventory_item
+
+func removeInventoryItem(item_id):
+	if item_id not in inventory_items: return
+	inventory_items[item_id].queue_free()
+	inventory_items.erase(item_id)
+
+func clearInventoryItems():
+	for i in inventory_items:
+		inventory_items[i].queue_free()
+	inventory_items = {}

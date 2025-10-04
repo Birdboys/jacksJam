@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://g7in0hqcsvgm"]
+[gd_scene load_steps=17 format=3 uid="uid://g7in0hqcsvgm"]
 
 [ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fnul3"]
 [ext_resource type="Texture2D" uid="uid://iv7lq5thbqbp" path="res://assets/temp/flashlight_off.png" id="2_513t2"]
@@ -8,8 +8,6 @@
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="3_scoti"]
 [ext_resource type="Texture2D" uid="uid://dx434im04v6ri" path="res://assets/temp/flashlight_on.png" id="4_j6a7c"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="4_kyx1g"]
-[ext_resource type="Texture2D" uid="uid://ci6rd1oirhdva" path="res://assets/temp/lighter.jpg" id="6_kyx1g"]
-[ext_resource type="PackedScene" uid="uid://cvbm6ls4l2kwo" path="res://scenes/inventory_item.tscn" id="6_r8eje"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r8eje"]
 shader = ExtResource("3_kyx1g")
@@ -144,7 +142,6 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="inventoryMargin" type="MarginContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,22 +158,6 @@ layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 2
-
-[node name="inventoryItem" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
-layout_mode = 2
-texture = ExtResource("6_kyx1g")
-
-[node name="inventoryItem2" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
-layout_mode = 2
-texture = ExtResource("6_kyx1g")
-
-[node name="inventoryItem3" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
-layout_mode = 2
-texture = ExtResource("6_kyx1g")
-
-[node name="inventoryItem4" parent="uiMargin/uiCont/topHbox/taskInventoryPanel/inventoryMargin/inventoryGrid" instance=ExtResource("6_r8eje")]
-layout_mode = 2
-texture = ExtResource("6_kyx1g")
 
 [node name="togglePanelButtons" type="HBoxContainer" parent="uiMargin/uiCont/topHbox/taskInventoryPanel"]
 layout_mode = 1
