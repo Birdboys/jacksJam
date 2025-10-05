@@ -1,13 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d36adc6pjlby3"]
+[gd_scene load_steps=2 format=3 uid="uid://d36adc6pjlby3"]
 
-[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xx7ry"]
-[ext_resource type="Texture2D" uid="uid://cusxcqycsagt4" path="res://assets/temp/color_conversion_output/kitchen.png" id="2_0cpwa"]
-[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_xx7ry"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
-shader = ExtResource("1_xx7ry")
-shader_parameter/flashlight_distance = 100.0
-shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+[ext_resource type="PackedScene" uid="uid://dfqoyy2qp8jlr" path="res://scenes/room_scenes/bathroom.tscn" id="1_mlyfx"]
 
 [node name="roomButtonSetup" type="Control"]
 layout_mode = 3
@@ -35,50 +28,5 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="roomTexture" type="TextureRect" parent="roomMargin"]
-material = SubResource("ShaderMaterial_0cpwa")
+[node name="roomTexture" parent="roomMargin" instance=ExtResource("1_mlyfx")]
 layout_mode = 2
-texture = ExtResource("2_0cpwa")
-expand_mode = 1
-
-[node name="roomButtons" type="Control" parent="roomMargin/roomTexture"]
-anchors_preset = 0
-offset_right = 922.0
-offset_bottom = 502.0
-mouse_filter = 1
-
-[node name="fridgeButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("2_xx7ry")]
-layout_mode = 0
-offset_left = 71.0
-offset_top = 71.0
-offset_right = 240.0
-offset_bottom = 392.0
-hover_text = "look at fridge"
-button_id = "kitchen_fridge"
-
-[node name="tableButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("2_xx7ry")]
-layout_mode = 0
-offset_left = 332.0
-offset_top = 285.0
-offset_right = 690.0
-offset_bottom = 488.0
-hover_text = "look at table"
-button_id = "kitchen_table"
-
-[node name="microwaveButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("2_xx7ry")]
-layout_mode = 0
-offset_left = 657.0
-offset_top = 72.0
-offset_right = 744.0
-offset_bottom = 137.0
-hover_text = "look at microwave"
-button_id = "kitchen_microwave"
-
-[node name="sinkButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("2_xx7ry")]
-layout_mode = 0
-offset_left = 651.0
-offset_top = 223.0
-offset_right = 813.0
-offset_bottom = 329.0
-hover_text = "look at sink"
-button_id = "kitchen_sink"

@@ -256,6 +256,8 @@ stretch_mode = 5
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
 
 [node name="mouseItem" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)

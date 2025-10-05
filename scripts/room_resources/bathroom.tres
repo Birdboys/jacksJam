@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://gwxt415ytvp2"]
+
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_77j1o"]
+[ext_resource type="PackedScene" uid="uid://dfqoyy2qp8jlr" path="res://scenes/room_scenes/bathroom.tscn" id="1_eo3jt"]
+
+[resource]
+script = ExtResource("1_77j1o")
+room_scene = ExtResource("1_eo3jt")
+room_text = "The bathroom"
+back_room_id = "upstairs"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

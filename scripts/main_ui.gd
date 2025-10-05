@@ -55,6 +55,9 @@ func loadRoom(room_name):
 	roomButtons = new_room_scene.find_child("roomButtons")
 	getRoomButtons()
 	
+	var backButton = new_room_scene.find_child("backButton")
+	if backButton: backButton.pressed.connect(handleBackButtonPressed.bind(new_room_resource.back_room_id))
+	
 	var new_room_text = new_room_resource.room_text
 	loadText(new_room_text)
 	
@@ -87,7 +90,7 @@ func clearText():
 func loadText(t):
 	for x in range(len(t)):
 		descriptionText.text += t[x]
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.02).timeout
 	
 func updateMouseText(t):
 	mouseLabel.text = t
@@ -97,21 +100,43 @@ func clearMouseText():
 
 func roomButtonPressed(button_event: String):
 	match button_event:
-		"bed": print("do spooky thing")
-		"clock": print("does spookier thing")
-		"pillow":
-			toggleDark(false)
-			loadRoom("kitchen_test")
 		"front_door_button": 
-			loadRoom("hospital_test")
+			loadRoom("entrance")
 			completeTask("enter_house")
 			removeInventoryItem("key")
 			addInventoryItem("lighter", load("res://assets/temp/lighter.jpg"))
 			addInventoryItem("grabber", load("res://assets/temp/grabber.jpg"))
-			toggleDark(true)
-		"hospital_door": 
-			toggleDark(false)
-			loadRoom("front_door_test")
+			#toggleDark(true)
+			
+		#ENTRANCE BUTTONS
+		"go_up_stairs":
+			loadRoom("upstairs")
+		"go_dining_room":
+			loadRoom("dining_room")
+		"go_living_room":
+			loadRoom("living_room")
+		
+		#UPSTAIRS BUTTONS
+		"go_down_stairs":
+			loadRoom("entrance")
+		"go_bathroom":
+			loadRoom("bathroom")
+		"go_master_bedroom":
+			loadRoom("master_bedroom")
+		"go_kids_bedroom":
+			loadRoom("kids_bedroom")
+			
+		#DINING ROOM BUTTONS
+		"look_table":
+			pass
+		
+		#LIVING ROOM BUTTONS
+		"look_window":
+			loadRoom("living_room_window")
+			
+		#MASTER BEDROOM BUTTONS
+		"look_dresser":
+			loadRoom("master_bedroom_dresser")
 		_: pass
 		
 func handleFlashlightEvent(event_id):
@@ -126,6 +151,9 @@ func handleRoomEnterEvent(event_id):
 		"play_spooky_footstep": 
 			AudioHandler.playSound("footsteps", Vector3.LEFT)
 
+func handleBackButtonPressed(room_id):
+	loadRoom(room_id)
+	
 func toggleTaskInventoryPanels(tab_id):
 	print("TAB: ", tab_id)
 	if tab_id == 0:

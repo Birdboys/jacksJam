@@ -6,3 +6,4 @@ class_name RoomResource
 @export var room_enter_event: String
 @export var room_flashlight_on_event : String
 @export var room_flashlight_off_event : String
+@export var back_room_id : String
