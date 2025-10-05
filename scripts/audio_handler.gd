@@ -6,7 +6,7 @@ extends Camera3D
 @onready var spookyTimer := $spookyTimer
 @onready var spooky_sound_cooldown_min := 10
 @onready var spooky_sound_cooldown_max := 30
-var num_players := 5
+var num_players := 10
 var player_queue : Array[AudioStreamPlayer3D] = []
 #var player_queue : Array[AudioStreamPlayer] = []
 var player_queue_id := 0

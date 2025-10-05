@@ -10,6 +10,13 @@ extends Node
 	"What's your name and address?",
 	"George and I live at 1234 ghost ave",
 	"Alright. I can swing by now.",
-	"See you soon",
-	"*click* Gotta grab my keys"
+	"See you soon...",
+	"Gotta grab my keys."
+]
+
+@onready var front_door_dialogue := [
+	"Hello? Georgie?",
+	"Georgie? You here? You got ghosts and I’m ready to investigate.",
+	"Guess no one’s home. Works for me, I’ll have to do less on this call than the last one.",
+	"All I gotta do is check on the living, dining, and bedrooms, then I can leave."
 ]

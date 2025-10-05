@@ -28,8 +28,8 @@ func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
-	loadRoom("front_door_test")
-	#loadRoom("intro_phone")
+	#loadRoom("front_door_test")
+	loadRoom("intro_phone")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#addInventoryItem("key", load("res://assets/temp/key.jpeg"))
@@ -140,14 +140,6 @@ func clearMouseText():
 func roomButtonPressed(button_event: String):
 	if not can_click: return
 	match button_event:
-		"front_door_button": 
-			loadRoom("entrance")
-			completeTask("enter_house")
-			clearTasks()
-			removeInventoryItem("key")
-			addTask("salt_window", "Salt living \nroom window")
-			addInventoryItem("salt", load("res://assets/temp/salt.jpeg"))
-			#toggleDark(true)
 			
 		#INTRO BUTTONS
 		"answer_phone":
@@ -190,11 +182,35 @@ func roomButtonPressed(button_event: String):
 			loadText(DialogueHandler.phone_call_dialogue[10])
 			addTask("grab_keys", "Take keys")
 		"take_keys":
-			loadRoom("front_door_test")
 			addInventoryItem("truck_keys", load("res://assets/temp/truck_keys.jpg"))
 			completeTask("grab_keys")
+			AudioHandler.playSound("van_start")
+			await loadText("Lets go...")
+			await get_tree().create_timer(0.5).timeout
+			loadRoom("front_door_test")
 			addTask("enter_house", "Enter house")
-			
+		
+		#FRONT DOOR BUTTONS
+		"knock_button_1":
+			AudioHandler.playSound("door_knocking")
+			loadText(DialogueHandler.front_door_dialogue[0])
+		"knock_button_2":
+			AudioHandler.playSound("door_knocking")
+			loadText(DialogueHandler.front_door_dialogue[1])
+		"knock_button_3":
+			AudioHandler.playSound("door_knocking")
+			loadText(DialogueHandler.front_door_dialogue[2])
+		"front_door_button":
+			AudioHandler.playSound("open_door")
+			await loadText(DialogueHandler.front_door_dialogue[3])
+			await get_tree().create_timer(1.0).timeout
+			loadRoom("entrance")
+			completeTask("enter_house")
+			#clearTasks()
+			removeInventoryItem("key")
+			addTask("salt_window", "Salt living \nroom window")
+			addInventoryItem("salt", load("res://assets/temp/salt.jpeg"))
+		
 		#ENTRANCE BUTTONS
 		"go_up_stairs":
 			loadRoom("upstairs")

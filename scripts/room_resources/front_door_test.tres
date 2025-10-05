@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_feess")
 room_scene = ExtResource("1_7d8lt")
-room_text = "oh wowwy this house is spooky"
+room_text = "Alrighty, time to get to work."
 metadata/_custom_type_script = "uid://3ctpp3cj2op5"
