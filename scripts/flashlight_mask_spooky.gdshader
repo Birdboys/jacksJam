@@ -4,7 +4,8 @@ render_mode world_vertex_coords;
 global uniform vec2 mouse_pos;
 global uniform bool is_dark = false;
 global uniform bool flashlight_on = false;
-uniform float flashlight_distance = 100.0;
+global uniform sampler2D point_light_dithered;
+uniform float flashlight_distance = 500.0;
 uniform vec4 dark_color = vec4(0, 0.016, 0.071, 1);
 varying vec2 vertex_pos;
 
@@ -21,6 +22,8 @@ void fragment() {
 			if (dist > flashlight_distance){
 				COLOR = vec4(0,0,0,0);
 			} else {
+				vec2 uv = vec2((vertex_pos.x-mouse_pos.x)/flashlight_distance/3.0 + 0.5, (vertex_pos.y-mouse_pos.y)/flashlight_distance/3.0 + 0.5);
+				COLOR.a = texture(point_light_dithered, uv).r;
 				//COLOR = COLOR * pow((flashlight_distance-dist)/flashlight_distance,2);
 			}
 		} else {

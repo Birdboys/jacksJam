@@ -46,3 +46,7 @@ flashlight_on={
 "type": "bool",
 "value": false
 }
+point_light_dithered={
+"type": "sampler2D",
+"value": "res://assets/point_light_dithered.png"
+}
