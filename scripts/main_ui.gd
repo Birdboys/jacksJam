@@ -116,6 +116,8 @@ func roomButtonPressed(button_event: String):
 			loadRoom("dining_room")
 		"go_living_room":
 			loadRoom("living_room")
+		"go_kitchen":
+			loadRoom("kitchen_test")
 		
 		#UPSTAIRS BUTTONS
 		"go_down_stairs":

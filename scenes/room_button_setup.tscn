@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d36adc6pjlby3"]
 
-[ext_resource type="PackedScene" uid="uid://dfqoyy2qp8jlr" path="res://scenes/room_scenes/bathroom.tscn" id="1_mlyfx"]
+[ext_resource type="PackedScene" uid="uid://duovwvyw4fbxe" path="res://scenes/room_scenes/entrance.tscn" id="1_mlyfx"]
 
 [node name="roomButtonSetup" type="Control"]
 layout_mode = 3
