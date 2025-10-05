@@ -7,4 +7,5 @@
 script = ExtResource("1_8wdnd")
 room_scene = ExtResource("1_3olvp")
 room_text = "What a mess, not ordering food from this kitchen"
+back_room_id = "entrance"
 metadata/_custom_type_script = "uid://3ctpp3cj2op5"

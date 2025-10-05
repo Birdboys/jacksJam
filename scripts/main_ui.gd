@@ -1,6 +1,7 @@
 extends Control
 
 @onready var roomMargin := $uiMargin/uiCont/topHbox/roomPanel/roomMargin
+@onready var roomTransitionAnim := $uiMargin/uiCont/topHbox/roomPanel/roomTransitionAnim
 
 @onready var descriptionText := $uiMargin/uiCont/botHbox/textPanel/textMargin/descriptionText
 @onready var flashlightButton := $uiMargin/uiCont/botHbox/lightPanel/buttonMargin/flashlightButton
@@ -16,6 +17,7 @@ extends Control
 var tasks := {}
 var inventory_items := {}
 var flashlight_on := false
+var can_click := true
 var current_room_resource : RoomResource
 var current_item := ""
 var roomButtons
@@ -49,6 +51,13 @@ func toggleFlashlight(on: bool):
 	RenderingServer.global_shader_parameter_set("flashlight_on", flashlight_on)
 	
 func loadRoom(room_name):
+	can_click = false
+	clearMouseText()
+	clearHeldItem()
+	
+	roomTransitionAnim.play("transition_room_begin")
+	await roomTransitionAnim.animation_finished
+	
 	unloadCurrentRoom()
 	var new_room_resource = load("res://scripts/room_resources/%s.tres" % room_name) as RoomResource
 	var new_room_scene = new_room_resource.room_scene.instantiate()
@@ -59,12 +68,17 @@ func loadRoom(room_name):
 	var backButton = new_room_scene.find_child("backButton")
 	if backButton: backButton.pressed.connect(handleBackButtonPressed.bind(new_room_resource.back_room_id))
 	
+	current_room_resource = new_room_resource
+	
+	roomTransitionAnim.play("transition_room_end")
+	await roomTransitionAnim.animation_finished
+	
 	var new_room_text = new_room_resource.room_text
 	loadText(new_room_text)
 	
 	handleRoomEnterEvent(new_room_resource.room_enter_event)
 	
-	current_room_resource = new_room_resource
+	can_click = true
 	
 func unloadCurrentRoom():
 	if roomButtons:
@@ -75,8 +89,6 @@ func unloadCurrentRoom():
 				child.pressed.disconnect(roomButtonPressed)
 	roomMargin.get_child(0).queue_free()
 	descriptionText.text = ""
-	clearMouseText()
-	clearHeldItem()
 	
 func getRoomButtons():
 	for child in roomButtons.get_children():
@@ -85,6 +97,7 @@ func getRoomButtons():
 			child.mouse_entered.connect(updateMouseText.bind(child.hover_text))
 			child.mouse_exited.connect(clearMouseText)
 			child.pressed.connect(roomButtonPressed.bind(child.button_id))
+
 func clearText():
 	descriptionText.text = ""
 	
@@ -94,12 +107,14 @@ func loadText(t):
 		await get_tree().create_timer(0.02).timeout
 	
 func updateMouseText(t):
+	if not can_click: return
 	mouseLabel.text = t
 	
 func clearMouseText():
 	mouseLabel.text = ""
 
 func roomButtonPressed(button_event: String):
+	if not can_click: return
 	match button_event:
 		"front_door_button": 
 			loadRoom("entrance")
