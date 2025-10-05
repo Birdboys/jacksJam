@@ -19,6 +19,7 @@ config/icon="uid://sh7nx7xrrx8q"
 
 AudioHandler="*res://scenes/audio_handler.tscn"
 DialogueHandler="*res://scripts/dialogueHandler.gd"
+TriggerHandler="*res://scripts/triggerHandler.gd"
 
 [display]
 

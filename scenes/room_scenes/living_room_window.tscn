@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5ltlg11ccyit"]
+[gd_scene load_steps=11 format=3 uid="uid://b5ltlg11ccyit"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_fiyms"]
-[ext_resource type="Texture2D" uid="uid://blbvg1djo0tf7" path="res://assets/temp/room_views/living_room_window.png" id="2_fsxmj"]
+[ext_resource type="Texture2D" uid="uid://blbvg1djo0tf7" path="res://assets/temp/room_views_old/living_room_window.png" id="2_fsxmj"]
+[ext_resource type="Script" uid="uid://dgvje6n76n6kn" path="res://scripts/room_scripts/living_room_window_script.gd" id="3_fsxmj"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_qg2dk"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_vq3a3"]
 
@@ -22,6 +23,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 material = SubResource("ShaderMaterial_0cpwa")
 texture = ExtResource("2_fsxmj")
 expand_mode = 1
+script = ExtResource("3_fsxmj")
 metadata/_edit_lock_ = true
 
 [node name="roomButtons" type="Control" parent="."]
@@ -34,7 +36,7 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="clickerButton" parent="roomButtons" instance=ExtResource("3_qg2dk")]
+[node name="saltButton" parent="roomButtons" instance=ExtResource("3_qg2dk")]
 layout_mode = 0
 offset_left = 280.0
 offset_top = 75.0
@@ -42,6 +44,15 @@ offset_right = 587.0
 offset_bottom = 357.0
 hover_text = "Salt window"
 button_id = "salt_window"
+
+[node name="windowButton" parent="roomButtons" instance=ExtResource("3_qg2dk")]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 75.0
+offset_right = 587.0
+offset_bottom = 357.0
+hover_text = "Look at window"
+button_id = "look_at_window"
 
 [node name="backButton" type="Button" parent="."]
 layout_mode = 1

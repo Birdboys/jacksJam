@@ -19,6 +19,7 @@ var inventory_items := {}
 var flashlight_on := false
 var can_click := true
 var current_room_resource : RoomResource
+var current_room_scene 
 var current_item := ""
 var roomButtons
 
@@ -26,7 +27,7 @@ func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
-	loadRoom("intro_phone")
+	loadRoom("front_door_test")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#addInventoryItem("key", load("res://assets/temp/key.jpeg"))
@@ -58,7 +59,7 @@ func loadRoom(room_name, do_transition=true):
 	if do_transition:
 		roomTransitionAnim.play("transition_room_begin")
 		await roomTransitionAnim.animation_finished
-	
+		AudioHandler.playSound("transition_footsteps")
 	unloadCurrentRoom()
 	var new_room_resource = load("res://scripts/room_resources/%s.tres" % room_name) as RoomResource
 	var new_room_scene = new_room_resource.room_scene.instantiate()
@@ -70,6 +71,7 @@ func loadRoom(room_name, do_transition=true):
 	if backButton: backButton.pressed.connect(handleBackButtonPressed.bind(new_room_resource.back_room_id))
 	
 	current_room_resource = new_room_resource
+	current_room_scene = new_room_scene
 	
 	if do_transition:
 		roomTransitionAnim.play("transition_room_end")
@@ -110,10 +112,15 @@ func clearText():
 	descriptionText.text = ""
 	
 func loadText(t):
+	descriptionText.visible_characters = 0.0
+	descriptionText.text = t
 	for x in range(len(t)):
 		if not can_click: return
-		descriptionText.text += t[x]
-		await get_tree().create_timer(0.02).timeout
+		descriptionText.visible_characters += 1
+		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.06).timeout
+		else: await get_tree().create_timer(0.03).timeout
+		
+	descriptionText.visible_characters =  -1.0
 	
 func updateMouseText(t):
 	if not can_click: return
@@ -128,9 +135,10 @@ func roomButtonPressed(button_event: String):
 		"front_door_button": 
 			loadRoom("entrance")
 			completeTask("enter_house")
+			clearTasks()
 			removeInventoryItem("key")
-			addInventoryItem("lighter", load("res://assets/temp/lighter.jpg"))
-			addInventoryItem("grabber", load("res://assets/temp/grabber.jpg"))
+			addTask("salt_window", "Salt living \nroom window")
+			addInventoryItem("salt", load("res://assets/temp/salt.jpeg"))
 			#toggleDark(true)
 			
 		#INTRO BUTTONS
@@ -138,6 +146,8 @@ func roomButtonPressed(button_event: String):
 			completeTask("answer_phone")
 			clearText()
 			clearMouseText()
+			AudioHandler.playSound("pickup_phone")
+			AudioHandler.stopLoopingSound("phone_ring")
 			loadText("Phony tony's, you got ghosts we got solutions, how can I help you?")
 		"call_line_1":
 			clearText()
@@ -168,11 +178,14 @@ func roomButtonPressed(button_event: String):
 			loadText(DialogueHandler.phone_call_dialogue[9])
 		"end_call":
 			clearText()
+			AudioHandler.playSound("put_down_phone")
 			loadText(DialogueHandler.phone_call_dialogue[10])
 			addTask("grab_keys", "Take keys")
 		"take_keys":
 			loadRoom("front_door_test")
 			addInventoryItem("truck_keys", load("res://assets/temp/truck_keys.jpg"))
+			completeTask("grab_keys")
+			addTask("enter_house", "Enter house")
 			
 		#ENTRANCE BUTTONS
 		"go_up_stairs":
@@ -196,17 +209,49 @@ func roomButtonPressed(button_event: String):
 			loadRoom("kids_bedroom")
 			
 		#DINING ROOM BUTTONS
-		"look_table":
-			pass
+		"look_dining_table":
+			loadText("What a lovely dining table")
+		"use_spirit_box":
+			if current_item == "spirit_box":
+				loadText("Time for the noise")
+				TriggerHandler.spirit_boxed_dining_room = true
+				TriggerHandler.has_emf = true
+				addInventoryItem("emf", load("res://assets/temp/emf.jpg"))
+				completeTask("spirit_box")
+				addTask("emf", "Use emf in\nmaster bedroom")
+				current_room_scene.placedSpiritBox()
+			else:
+				loadText("I need to use the spirit box")
+				
+		"look_spirit_box":
+			loadText("What a lovely box")
 		
 		#LIVING ROOM BUTTONS
 		"look_window":
 			loadRoom("living_room_window")
+		
+		#LIVING ROOM WINDOW BUTTONS
+		"look_at_window":
+			loadText("Nice and salty")
 			
+		"salt_window":
+			if current_item == "salt":
+				loadText("Consider yourself, salted")
+				TriggerHandler.salted_window = true
+				TriggerHandler.has_spirit_box = true
+				current_room_scene.saltPlaced()
+				clearHeldItem()
+				completeTask("salt_window")
+				addTask("spirit_box", "Use spirit box\nin living room")
+				addInventoryItem("spirit_box", load("res://assets/temp/spirit_box.jpg"))
+			else:
+				loadText("I need salt to put on the window")
+				
 		#MASTER BEDROOM BUTTONS
 		"look_dresser":
 			loadRoom("master_bedroom_dresser")
 		_: pass
+	clearHeldItem()
 		
 func handleFlashlightEvent(event_id):
 	match event_id:
@@ -219,7 +264,9 @@ func handleRoomEnterEvent(event_id):
 	match event_id:
 		"play_spooky_footstep": 
 			AudioHandler.playSound("footsteps", Vector3.LEFT)
-
+		"phone_ring":
+			AudioHandler.playLoopingSound("phone_ring")
+			
 func handleBackButtonPressed(room_id):
 	toggleDark(false)
 	loadRoom(room_id)
@@ -241,6 +288,7 @@ func addTask(task_id, task_text):
 	tasks[task_id] = new_task_label
 
 func completeTask(task_id):
+	if task_id not in tasks: return
 	tasks[task_id].theme_type_variation = "taskFinished"
 
 func removeTask(task_id):
