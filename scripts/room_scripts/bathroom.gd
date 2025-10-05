@@ -4,4 +4,5 @@ extends TextureRect
 @onready var journalButton := $roomButtons/journalButton
 
 func _ready() -> void:
-	journalButton.visible = TriggerHandler.has_grabby_arm
+	journalButton.visible = TriggerHandler.knocked_journal_down
+	

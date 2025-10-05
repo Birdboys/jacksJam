@@ -28,10 +28,13 @@ func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
-	loadRoom("entrance")
+	#loadRoom("entrance")
 	#loadRoom("intro_phone")
+	#await startSpooky()
+	loadRoom("entrance")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
+	#startSpooky()
 	#addInventoryItem("key", load("res://assets/temp/key.jpeg"))
 	
 func _process(delta: float) -> void:
@@ -48,6 +51,7 @@ func _gui_input(event: InputEvent) -> void:
 		
 func toggleFlashlight(on: bool):
 	flashlight_on = on
+	TriggerHandler.flashlight_on = on
 	if on: 
 		handleFlashlightEvent(current_room_resource.room_flashlight_on_event)
 	else: 
@@ -350,6 +354,17 @@ func roomButtonPressed(button_event: String):
 			loadText("Goin under.")
 			#loadRoom("under_bed")
 		
+		#MASTER BEDROOM DRESSER BUTTONS
+		"look_dresser_phone":
+			loadText("The lines not workin. Damn.")
+		"look_dresser_picture":
+			loadText("Good old Georgie. Wonder where he's at.")
+		"take_dresser_key":
+			TriggerHandler.took_bedroom_key = true
+			addInventoryItem("bedroom_key", load("res://assets/inventory_icons/old_key.png"))
+			loadText("Yoink.")
+			current_room_scene.tookKey()
+		
 		#BATHROOM BUTTONS
 		"look_bathtub":
 			loadText("What kinda lunatic leaves their tub filled? And with black water no less.")
@@ -444,6 +459,7 @@ func clearHeldItem():
 	current_item = ""
 
 func toggleDark(on: bool):
+	TriggerHandler.is_dark = on
 	RenderingServer.global_shader_parameter_set("is_dark", on)
 
 func startSpooky():

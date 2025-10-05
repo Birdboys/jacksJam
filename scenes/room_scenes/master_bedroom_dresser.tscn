@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://brlyt73r2phjm"]
+[gd_scene load_steps=11 format=3 uid="uid://brlyt73r2phjm"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_akufx"]
-[ext_resource type="Texture2D" uid="uid://dpjv2tmgcg2oe" path="res://assets/temp/room_views/master_bedroom_desk.png" id="2_lrii8"]
+[ext_resource type="Texture2D" uid="uid://drir5xova77t0" path="res://assets/temp/room_views/dresser_key.png" id="2_lrii8"]
+[ext_resource type="Script" uid="uid://bf8bt38i8xddx" path="res://scripts/room_scripts/master_bedroom_dresser_script.gd" id="3_6cswg"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="3_cneek"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_v4ktn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
 shader = ExtResource("1_akufx")
@@ -21,6 +23,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 material = SubResource("ShaderMaterial_0cpwa")
 texture = ExtResource("2_lrii8")
 expand_mode = 1
+script = ExtResource("3_6cswg")
 metadata/_edit_lock_ = true
 
 [node name="roomButtons" type="Control" parent="."]
@@ -32,6 +35,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
+
+[node name="phoneButton" parent="roomButtons" instance=ExtResource("3_v4ktn")]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 147.0
+offset_right = 303.0
+offset_bottom = 228.0
+hover_text = "Look at phone"
+button_id = "look_dresser_phone"
+
+[node name="keyButton" parent="roomButtons" instance=ExtResource("3_v4ktn")]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 176.0
+offset_right = 576.0
+offset_bottom = 216.0
+hover_text = "Take key"
+button_id = "take_dresser_key"
+
+[node name="pictureButton" parent="roomButtons" instance=ExtResource("3_v4ktn")]
+layout_mode = 0
+offset_left = 634.0
+offset_top = 91.0
+offset_right = 785.0
+offset_bottom = 212.0
+hover_text = "Look picture"
+button_id = "look_dresser_picture"
 
 [node name="backButton" type="Button" parent="."]
 layout_mode = 1

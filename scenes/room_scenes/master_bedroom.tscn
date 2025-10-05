@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://u686p03i36vd"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xot2r"]
-[ext_resource type="Texture2D" uid="uid://dqr6ltk4yyhki" path="res://assets/temp/room_views_old/master_bedroom.png" id="2_f4a2t"]
+[ext_resource type="Texture2D" uid="uid://dqr6ltk4yyhki" path="res://assets/temp/room_views/master_bedroom.png" id="2_e2anj"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_0j6ag"]
 [ext_resource type="Script" uid="uid://caslowhd1gus4" path="res://scripts/room_scripts/master_bedroom_script.gd" id="3_e2anj"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_eby4q"]
@@ -21,7 +21,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
-texture = ExtResource("2_f4a2t")
+texture = ExtResource("2_e2anj")
 expand_mode = 1
 script = ExtResource("3_e2anj")
 metadata/_edit_lock_ = true
@@ -38,38 +38,39 @@ metadata/_edit_lock_ = true
 
 [node name="dresserButton" parent="roomButtons" instance=ExtResource("3_0j6ag")]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 268.0
-offset_right = 278.0
-offset_bottom = 352.0
+offset_left = 258.0
+offset_top = 215.0
+offset_right = 372.0
+offset_bottom = 314.0
 hover_text = "Look at dresser"
 button_id = "look_dresser"
 
 [node name="bedButton" parent="roomButtons" instance=ExtResource("3_0j6ag")]
 layout_mode = 0
-offset_left = 321.0
-offset_top = 249.0
-offset_right = 682.0
-offset_bottom = 416.0
+offset_left = 375.0
+offset_top = 204.0
+offset_right = 750.0
+offset_bottom = 440.0
 hover_text = "Look at bed"
 button_id = "look_master_bed"
 
 [node name="underBedButton" parent="roomButtons" instance=ExtResource("3_0j6ag")]
 z_index = 1
 layout_mode = 0
-offset_left = 337.0
-offset_top = 370.0
-offset_right = 682.0
-offset_bottom = 420.0
+offset_left = 378.0
+offset_top = 320.0
+offset_right = 723.0
+offset_bottom = 405.0
+rotation = 0.16562061
 hover_text = "Look under bed"
 button_id = "look_under_bed"
 
 [node name="tableButton" parent="roomButtons" instance=ExtResource("3_0j6ag")]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 255.0
-offset_right = 754.0
-offset_bottom = 371.0
+offset_left = 444.0
+offset_top = 202.0
+offset_right = 521.0
+offset_bottom = 293.0
 hover_text = "Look at table"
 button_id = "look_master_table"
 

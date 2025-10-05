@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://cvyns7d84lqnb"]
+
+[ext_resource type="PackedScene" uid="uid://7moayh2xisgn" path="res://scenes/room_scenes/inside_front_door.tscn" id="1_7n2qr"]
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_j20xw"]
+
+[resource]
+script = ExtResource("1_j20xw")
+room_scene = ExtResource("1_7n2qr")
+room_text = "I could leave now..."
+back_room_id = "entrance"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://7moayh2xisgn"]
+
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_w37r1"]
+[ext_resource type="Texture2D" uid="uid://7t42rxd5t5uy" path="res://assets/temp/room_views/front_door.png" id="2_0fjlh"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_sk7xw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
+shader = ExtResource("1_w37r1")
+shader_parameter/flashlight_distance = 100.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+
+[node name="roomTexture" type="TextureRect"]
+material = SubResource("ShaderMaterial_0cpwa")
+texture = ExtResource("2_0fjlh")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="roomButtons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="doorButton" parent="roomButtons" instance=ExtResource("3_sk7xw")]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 7.0
+offset_right = 662.0
+offset_bottom = 519.0
+hover_text = "Leave house"
+button_id = "leave_house"
