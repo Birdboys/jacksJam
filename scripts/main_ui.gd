@@ -28,7 +28,7 @@ func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
-	loadRoom("front_door_test")
+	loadRoom("entrance")
 	#loadRoom("intro_phone")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
@@ -82,7 +82,6 @@ func loadRoom(room_name, do_transition=true):
 		await roomTransitionAnim.animation_finished
 	
 	var new_room_text = new_room_resource.room_text
-	
 	
 	handleRoomEnterEvent(new_room_resource.room_enter_event)
 	loadText(new_room_text)
@@ -195,6 +194,7 @@ func roomButtonPressed(button_event: String):
 			current_room_scene.handlePhoneCall(10)
 		"take_keys":
 			current_room_scene.handlePhoneCall(11)
+			current_room_scene.keysTaken()
 			addInventoryItem("truck_keys", load("res://assets/temp/truck_keys.jpg"))
 			completeTask("grab_keys")
 			AudioHandler.playSound("van_start")
@@ -236,8 +236,38 @@ func roomButtonPressed(button_event: String):
 		"go_living_room":
 			loadRoom("living_room")
 		"go_kitchen":
-			loadRoom("kitchen_test")
+			loadRoom("kitchen")
 		
+		#KITCHEN BUTTONS:
+		"kitchen_fridge":
+			loadText("It smells rank over here, not opening that fella.")
+		"kitchen_table":
+			loadRoom("kitchen_counter")
+		"kitchen_microwave":
+			loadText("It definitely isn't 3:00 AM... Welp, I didn't break it.")
+		"kitchen_sink":
+			loadText("They clearly need a dish washing schedule.")
+		"kitchen_cabinet":
+			if TriggerHandler.has_counter_key:
+				loadText("Wowwy I found a lighter")
+				addInventoryItem("lighter", load("res://assets/temp/lighter.jpg"))
+			else:
+				loadText("The cabinets are locked. Shame, I bet there's some good stuff inside.")
+		
+		#KITCHEN COUNTER BUTTONS:
+		"look_newspaper":
+			loadText("That's a lot of words. Too bad I'm not reading em'.")
+		"take_kitchen_key":
+			TriggerHandler.took_kitchen_key = true
+			loadText("This might come in handy.")
+			current_room_scene.tookKey()
+			addInventoryItem("kitchen_key", load("res://assets/temp/kitchen_key.jpg"))
+		"take_kitchen_coins":
+			TriggerHandler.took_kitchen_coins = true
+			loadText("My favorite part of the job is collecting coins… actually, I think it's spendin em’.") 
+			current_room_scene.tookCoins()
+			addInventoryItem("kitchen_coins", load("res://assets/temp/coins.jpeg"))
+			
 		#UPSTAIRS BUTTONS
 		"go_down_stairs":
 			loadRoom("entrance")
@@ -246,14 +276,18 @@ func roomButtonPressed(button_event: String):
 		"go_master_bedroom":
 			loadRoom("master_bedroom")
 		"go_kids_bedroom":
-			loadRoom("kids_bedroom")
+			if TriggerHandler.has_bedroom_key:
+				AudioHandler.playSound("open_door")
+				loadRoom("kids_bedroom")
+			else:
+				loadText("Hm... the door is locked.")
 			
 		#DINING ROOM BUTTONS
 		"look_dining_table":
 			loadText("What a lovely dining table")
 		"use_spirit_box":
 			if current_item == "spirit_box":
-				loadText("Time for the noise")
+				loadText("It's part of my procedure to use this static machine to \"detect\" ghosts. Normally I have to ask to be alone. Emf time now.")
 				AudioHandler.playSound("static")
 				TriggerHandler.spirit_boxed_dining_room = true
 				TriggerHandler.has_emf = true
@@ -273,14 +307,20 @@ func roomButtonPressed(button_event: String):
 		#LIVING ROOM BUTTONS
 		"look_window":
 			loadRoom("living_room_window")
-		
+		"look_couch":
+			loadText("I love old comfy lookin couches.")
+		"look_living_table":
+			loadText("Nice table, might put my feet up for a bit when I’m done.")
+		"look_tv":
+			loadText("A nice piece, if it weren't so heavy I'd nab it.")
+			
 		#LIVING ROOM WINDOW BUTTONS
 		"look_at_window":
 			loadText("Nice and salty")
 			
 		"salt_window":
 			if current_item == "salt":
-				loadText("Consider yourself, salted")
+				loadText("Usually I don't do this, but it'll prove I was actually here. Not going to do an unpaid job.")
 				TriggerHandler.salted_window = true
 				TriggerHandler.has_spirit_box = true
 				current_room_scene.saltPlaced()
@@ -297,10 +337,10 @@ func roomButtonPressed(button_event: String):
 			
 		"look_master_bed":
 			if TriggerHandler.has_emf and current_item == "emf":
-				loadText("The emf is actually triggering... something must be under the bed.")
+				loadText("The metal detector is triggering... something must be under the bed.")
 				TriggerHandler.under_bed_found = true
 				current_room_scene.foundUnderBed()
-				#AudioHandler.playSound("metal_detected")
+				AudioHandler.playSound("metal_detector")
 			else:
 				loadText("It's a nice bed.")
 		"look_master_table":
@@ -312,7 +352,16 @@ func roomButtonPressed(button_event: String):
 		"look_under_bed":
 			loadText("Goin under.")
 			#loadRoom("under_bed")
-			
+		
+		#BATHROOM BUTTONS
+		"look_bathtub":
+			loadText("What kinda lunatic leaves their tub filled? And with black water no less.")
+		"look_sink":
+			loadText("I know there's not gonna be anything behind me, but mirrors still give me the willies.")
+		"look_toilet":
+			loadText("Gah! Who didn't flush! Animals... animals I tell ya.")
+		"look_shelf":
+			loadText("I think there's something up there, but I can't reach it.")
 		_: pass
 	clearHeldItem()
 		

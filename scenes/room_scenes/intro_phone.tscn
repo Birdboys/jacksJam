@@ -148,10 +148,10 @@ button_id = "end_call"
 [node name="keysButton" parent="roomButtons" instance=ExtResource("3_p5xkb")]
 visible = false
 layout_mode = 0
-offset_left = 738.0
-offset_top = 92.0
-offset_right = 886.0
-offset_bottom = 211.0
+offset_left = 664.0
+offset_top = 263.0
+offset_right = 765.0
+offset_bottom = 329.0
 hover_text = "Take keys"
 button_id = "take_keys"
 

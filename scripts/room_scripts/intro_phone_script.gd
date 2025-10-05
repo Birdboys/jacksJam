@@ -43,3 +43,6 @@ func handlePhoneCall(call_line: int):
 	callButton9.visible = call_line + 1 == 9
 	endCallButton.visible = call_line + 1 == 10
 	keysButton.visible = call_line + 1 == 11
+
+func keysTaken():
+	texture = load("res://assets/temp/room_views/intro_phone_no_keys.png")

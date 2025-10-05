@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dlfufg753uwy4"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_1ai8l"]
-[ext_resource type="Texture2D" uid="uid://c65bw2vdly322" path="res://assets/temp/room_views/living_room.png" id="2_mqcth"]
+[ext_resource type="Texture2D" uid="uid://c65bw2vdly322" path="res://assets/temp/room_views_old/living_room.png" id="2_mqcth"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_fjq7s"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_uybgx"]
 
@@ -46,11 +46,20 @@ button_id = "look_living_table"
 [node name="windowButton" parent="roomButtons" instance=ExtResource("3_fjq7s")]
 layout_mode = 0
 offset_left = 793.0
-offset_top = 54.0
+offset_top = 17.0
 offset_right = 931.0
-offset_bottom = 193.0
+offset_bottom = 250.0
 hover_text = "Look at window"
 button_id = "look_window"
+
+[node name="couchButton" parent="roomButtons" instance=ExtResource("3_fjq7s")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 194.0
+offset_right = 396.0
+offset_bottom = 522.0
+hover_text = "Look at couch"
+button_id = "look_couch"
 
 [node name="backButton" type="Button" parent="."]
 layout_mode = 1

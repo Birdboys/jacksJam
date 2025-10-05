@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdrvqo8semc75"]
+
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_an3xb"]
+[ext_resource type="Texture2D" uid="uid://dbsyg1tyvt3aa" path="res://assets/temp/color_conversion_output/kitchen.png" id="2_0jylq"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_k4pog"]
+[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_x8b5h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
+shader = ExtResource("1_an3xb")
+shader_parameter/flashlight_distance = 100.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rrcjx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8t02"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ivyw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ggtb2"]
+
+[node name="roomTexture" type="TextureRect"]
+material = SubResource("ShaderMaterial_0cpwa")
+texture = ExtResource("2_0jylq")
+expand_mode = 1
+
+[node name="roomButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 502.0
+mouse_filter = 1
+
+[node name="fridgeButton" parent="roomButtons" instance=ExtResource("3_k4pog")]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 66.0
+offset_right = 203.0
+offset_bottom = 387.0
+hover_text = "Look at fridge"
+button_id = "kitchen_fridge"
+
+[node name="tableButton" parent="roomButtons" instance=ExtResource("3_k4pog")]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 285.0
+offset_right = 690.0
+offset_bottom = 488.0
+hover_text = "Look at table"
+button_id = "kitchen_table"
+
+[node name="microwaveButton" parent="roomButtons" instance=ExtResource("3_k4pog")]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 63.0
+offset_right = 718.0
+offset_bottom = 141.0
+hover_text = "Look at microwave"
+button_id = "kitchen_microwave"
+
+[node name="sinkButton" parent="roomButtons" instance=ExtResource("3_k4pog")]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 212.0
+offset_right = 799.0
+offset_bottom = 318.0
+hover_text = "Look at sink"
+button_id = "kitchen_sink"
+
+[node name="cabinetButton" parent="roomButtons" instance=ExtResource("3_k4pog")]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 15.0
+offset_right = 565.0
+offset_bottom = 121.0
+hover_text = "Open cabinets"
+button_id = "kitchen_cabinet"
+
+[node name="backButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 105.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_x8b5h")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rrcjx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u8t02")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2ivyw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ggtb2")
+text = "BACK"
+flat = true

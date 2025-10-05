@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://bo3dvxxkrluc4"]
+
+[ext_resource type="PackedScene" uid="uid://43kcivkdyr3i" path="res://scenes/room_scenes/kitchen_counter.tscn" id="1_f4hn6"]
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_me8gh"]
+
+[resource]
+script = ExtResource("1_me8gh")
+room_scene = ExtResource("1_f4hn6")
+room_text = "A lovely assortment of goodies."
+back_room_id = "kitchen"
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfqoyy2qp8jlr"]
+[gd_scene load_steps=11 format=3 uid="uid://dfqoyy2qp8jlr"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_si1sv"]
-[ext_resource type="Texture2D" uid="uid://dqs76il12tump" path="res://assets/temp/room_views_old/bathroom.png" id="2_qhupn"]
+[ext_resource type="Texture2D" uid="uid://2i3lpjceaf71" path="res://assets/temp/room_views/bathroom.png" id="2_si1sv"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_jh5bn"]
+[ext_resource type="Script" uid="uid://6wfci8p3eboc" path="res://scripts/room_scripts/bathroom.gd" id="3_qhupn"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_x1pqo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
@@ -20,8 +21,9 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
-texture = ExtResource("2_qhupn")
+texture = ExtResource("2_si1sv")
 expand_mode = 1
+script = ExtResource("3_qhupn")
 metadata/_edit_lock_ = true
 
 [node name="roomButtons" type="Control" parent="."]
@@ -34,14 +36,51 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="clickerButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
+[node name="bathButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 257.0
-offset_right = 266.0
-offset_bottom = 414.0
+offset_left = 143.83403
+offset_top = 126.483635
+offset_right = 376.83405
+offset_bottom = 411.78445
+rotation = -0.11063777
 hover_text = "Look at bathtub"
 button_id = "look_bathtub"
+
+[node name="sinkButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 149.0
+offset_right = 588.0
+offset_bottom = 390.0
+hover_text = "Look at sink"
+button_id = "look_sink"
+
+[node name="toiletButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 293.0
+offset_right = 779.0
+offset_bottom = 448.0
+hover_text = "Look at toilet"
+button_id = "look_toilet"
+
+[node name="shelfButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 161.0
+offset_right = 811.0
+offset_bottom = 205.0
+hover_text = "Look at shelf"
+button_id = "look_shelf"
+
+[node name="journalButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 161.0
+offset_right = 811.0
+offset_bottom = 205.0
+hover_text = "Look at journal"
+button_id = "look_journal"
 
 [node name="backButton" type="Button" parent="."]
 layout_mode = 1
