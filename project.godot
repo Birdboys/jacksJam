@@ -37,7 +37,11 @@ mouse_pos={
 "type": "vec2",
 "value": Vector2(200, 0)
 }
-do_flashlight={
+is_dark={
+"type": "bool",
+"value": false
+}
+flashlight_on={
 "type": "bool",
 "value": false
 }

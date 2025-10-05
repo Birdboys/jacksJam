@@ -46,7 +46,8 @@ func toggleFlashlight(on: bool):
 		handleFlashlightEvent(current_room_resource.room_flashlight_on_event)
 	else: 
 		handleFlashlightEvent(current_room_resource.room_flashlight_off_event)
-
+	RenderingServer.global_shader_parameter_set("flashlight_on", flashlight_on)
+	
 func loadRoom(room_name):
 	unloadCurrentRoom()
 	var new_room_resource = load("res://scripts/room_resources/%s.tres" % room_name) as RoomResource
@@ -124,6 +125,7 @@ func roomButtonPressed(button_event: String):
 		"go_master_bedroom":
 			loadRoom("master_bedroom")
 		"go_kids_bedroom":
+			toggleDark(true)
 			loadRoom("kids_bedroom")
 			
 		#DINING ROOM BUTTONS
@@ -152,6 +154,7 @@ func handleRoomEnterEvent(event_id):
 			AudioHandler.playSound("footsteps", Vector3.LEFT)
 
 func handleBackButtonPressed(room_id):
+	toggleDark(false)
 	loadRoom(room_id)
 	
 func toggleTaskInventoryPanels(tab_id):
@@ -217,4 +220,4 @@ func clearHeldItem():
 	current_item = ""
 
 func toggleDark(on: bool):
-	RenderingServer.global_shader_parameter_set("do_flashlight", on)
+	RenderingServer.global_shader_parameter_set("is_dark", on)
