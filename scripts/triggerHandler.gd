@@ -24,6 +24,7 @@ var knocked_journal_down := false
 var is_spooky := false
 
 var took_bedroom_key := false
+var took_lighter := false
 
 #SCARES
 var done_kids_bedroom_scare := false

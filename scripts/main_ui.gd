@@ -242,6 +242,15 @@ func roomButtonPressed(button_event: String):
 		"go_kitchen":
 			loadRoom("kitchen")
 		
+		#FRONT DOOR INSIDE BUTTONS:
+		"leave_house":
+			if not TriggerHandler.is_spooky:
+				loadText("Nah, can't leave yet. I'm a scammer but Georgie deserves more than this.")
+			elif not TriggerHandler.took_lighter:
+				loadText("Damnit! It's locked, I'm trapped. Gotta find another way to get through.")
+			else:
+				loadText("IM FREE")
+				
 		#KITCHEN BUTTONS:
 		"kitchen_fridge":
 			loadText("It smells rank over here, not opening that fella.")
