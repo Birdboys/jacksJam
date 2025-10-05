@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://43kcivkdyr3i"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_0xedk"]
-[ext_resource type="Texture2D" uid="uid://cbc36g5clkk7e" path="res://assets/temp/room_views/kitchen_counter_all.png" id="2_ejtxf"]
+[ext_resource type="Texture2D" uid="uid://bmcue6iv54w67" path="res://assets/temp/room_views/kitchen_counter_no_key.png" id="2_ejtxf"]
 [ext_resource type="Script" uid="uid://dgjp0rfb6n3eb" path="res://scripts/room_scripts/kitchen_counter_script.gd" id="3_ejtxf"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_njkdp"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_4j4tp"]
@@ -44,15 +44,6 @@ offset_right = 461.0
 offset_bottom = 320.0
 hover_text = "Look at newspaper"
 button_id = "look_newspaper"
-
-[node name="keyButton" parent="roomButtons" instance=ExtResource("3_njkdp")]
-layout_mode = 0
-offset_left = 565.0
-offset_top = 123.0
-offset_right = 692.0
-offset_bottom = 212.0
-hover_text = "Take key"
-button_id = "take_kitchen_key"
 
 [node name="coinButton" parent="roomButtons" instance=ExtResource("3_njkdp")]
 layout_mode = 0

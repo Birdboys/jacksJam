@@ -195,7 +195,7 @@ func roomButtonPressed(button_event: String):
 		"take_keys":
 			current_room_scene.handlePhoneCall(11)
 			current_room_scene.keysTaken()
-			addInventoryItem("truck_keys", load("res://assets/temp/truck_keys.jpg"))
+			addInventoryItem("truck_keys", load("res://assets/inventory_icons/keys.png"))
 			completeTask("grab_keys")
 			AudioHandler.playSound("van_start")
 			await loadText("Lets go...")
@@ -226,7 +226,7 @@ func roomButtonPressed(button_event: String):
 			#clearTasks()
 			removeInventoryItem("key")
 			addTask("salt_window", "Salt living \nroom window")
-			addInventoryItem("salt", load("res://assets/temp/salt.jpeg"))
+			addInventoryItem("salt", load("res://assets/inventory_icons/salt.png"))
 		
 		#ENTRANCE BUTTONS
 		"go_up_stairs":
@@ -248,7 +248,7 @@ func roomButtonPressed(button_event: String):
 		"kitchen_sink":
 			loadText("They clearly need a dish washing schedule.")
 		"kitchen_cabinet":
-			if TriggerHandler.has_counter_key:
+			if TriggerHandler.took_counter_key:
 				loadText("Wowwy I found a lighter")
 				addInventoryItem("lighter", load("res://assets/inventory_icons/lighter.png"))
 			else:
@@ -257,11 +257,6 @@ func roomButtonPressed(button_event: String):
 		#KITCHEN COUNTER BUTTONS:
 		"look_newspaper":
 			loadText("That's a lot of words. Too bad I'm not reading em'.")
-		"take_kitchen_key":
-			TriggerHandler.took_kitchen_key = true
-			loadText("This might come in handy.")
-			current_room_scene.tookKey()
-			addInventoryItem("kitchen_key", load("res://assets/temp/kitchen_key.jpg"))
 		"take_kitchen_coins":
 			TriggerHandler.took_kitchen_coins = true
 			AudioHandler.playSound("coin_pickup")
@@ -277,7 +272,7 @@ func roomButtonPressed(button_event: String):
 		"go_master_bedroom":
 			loadRoom("master_bedroom")
 		"go_kids_bedroom":
-			if TriggerHandler.has_bedroom_key:
+			if TriggerHandler.took_bedroom_key:
 				AudioHandler.playSound("open_door")
 				loadRoom("kids_bedroom")
 			else:

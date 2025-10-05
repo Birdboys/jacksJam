@@ -14,9 +14,9 @@ var under_bed_found := false
 var took_kitchen_key := false
 var took_kitchen_coins := false
 
-var has_counter_key := false
-var has_grabby_arm := false
+var took_counter_key := false
+var took_grabby_arm := false
 
 var is_spooky := false
 
-var has_bedroom_key := false
+var took_bedroom_key := false
