@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://u686p03i36vd"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xot2r"]
-[ext_resource type="Texture2D" uid="uid://dqr6ltk4yyhki" path="res://assets/temp/room_views/master_bedroom.png" id="2_f4a2t"]
+[ext_resource type="Texture2D" uid="uid://dqr6ltk4yyhki" path="res://assets/temp/room_views_old/master_bedroom.png" id="2_f4a2t"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_0j6ag"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_eby4q"]
 

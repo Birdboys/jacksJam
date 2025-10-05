@@ -2,6 +2,7 @@ extends Control
 
 @onready var roomMargin := $uiMargin/uiCont/topHbox/roomPanel/roomMargin
 @onready var roomTransitionAnim := $uiMargin/uiCont/topHbox/roomPanel/roomTransitionAnim
+@onready var bottomUIAnim := $uiMargin/uiCont/botHbox/bottomUIAnim
 
 @onready var descriptionText := $uiMargin/uiCont/botHbox/textPanel/textMargin/descriptionText
 @onready var flashlightButton := $uiMargin/uiCont/botHbox/lightPanel/buttonMargin/flashlightButton
@@ -28,11 +29,13 @@ func _ready() -> void:
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
 	loadRoom("front_door_test")
+	#loadRoom("intro_phone")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#addInventoryItem("key", load("res://assets/temp/key.jpeg"))
 	
 func _process(delta: float) -> void:
+	mouseLabel.visible = can_click
 	mouseLabel.global_position = get_global_mouse_position() + Vector2(16, 16)
 	mouseItem.global_position = get_global_mouse_position() + Vector2(-36, -36)
 	RenderingServer.global_shader_parameter_set("mouse_pos", get_global_mouse_position())
@@ -49,6 +52,7 @@ func toggleFlashlight(on: bool):
 		handleFlashlightEvent(current_room_resource.room_flashlight_on_event)
 	else: 
 		handleFlashlightEvent(current_room_resource.room_flashlight_off_event)
+	AudioHandler.playSound("flashlight_click")
 	RenderingServer.global_shader_parameter_set("flashlight_on", flashlight_on)
 	
 func loadRoom(room_name, do_transition=true):
@@ -79,9 +83,9 @@ func loadRoom(room_name, do_transition=true):
 	
 	var new_room_text = new_room_resource.room_text
 	
-	can_click = true
-	loadText(new_room_text)
+	
 	handleRoomEnterEvent(new_room_resource.room_enter_event)
+	loadText(new_room_text)
 	
 func unloadCurrentRoom():
 	clearRoomButtons()
@@ -112,18 +116,22 @@ func clearText():
 	descriptionText.text = ""
 	
 func loadText(t):
+	can_click = false
 	descriptionText.visible_characters = 0.0
 	descriptionText.text = t
 	for x in range(len(t)):
-		if not can_click: return
+		#if not can_click: return
 		descriptionText.visible_characters += 1
-		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.06).timeout
-		else: await get_tree().create_timer(0.03).timeout
+		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.1).timeout
+		else: 
+			AudioHandler.playSound("typewriter")
+			await get_tree().create_timer(0.05).timeout
 		
 	descriptionText.visible_characters =  -1.0
+	can_click = true
 	
 func updateMouseText(t):
-	if not can_click: return
+	#if not can_click: return
 	mouseLabel.text = t
 	
 func clearMouseText():
@@ -213,13 +221,17 @@ func roomButtonPressed(button_event: String):
 			loadText("What a lovely dining table")
 		"use_spirit_box":
 			if current_item == "spirit_box":
-				loadText("Time for the noise")
+				#loadText("Time for the noise")
+				AudioHandler.playSound("static")
 				TriggerHandler.spirit_boxed_dining_room = true
 				TriggerHandler.has_emf = true
 				addInventoryItem("emf", load("res://assets/temp/emf.jpg"))
 				completeTask("spirit_box")
 				addTask("emf", "Use emf in\nmaster bedroom")
 				current_room_scene.placedSpiritBox()
+				
+				#TESTY FOR NOW
+				startSpooky()
 			else:
 				loadText("I need to use the spirit box")
 				
@@ -268,7 +280,7 @@ func handleRoomEnterEvent(event_id):
 			AudioHandler.playLoopingSound("phone_ring")
 			
 func handleBackButtonPressed(room_id):
-	toggleDark(false)
+	if not can_click: return
 	loadRoom(room_id)
 	
 func toggleTaskInventoryPanels(tab_id):
@@ -336,3 +348,11 @@ func clearHeldItem():
 
 func toggleDark(on: bool):
 	RenderingServer.global_shader_parameter_set("is_dark", on)
+
+func startSpooky():
+	TriggerHandler.is_spooky = true
+	AudioHandler.playSound("lights_out")
+	toggleDark(true)
+	await loadText("Huh... the lights went out. Thank god for my flashlight. Let's leave.")
+	bottomUIAnim.play("load_flashlight")
+	AudioHandler.startSpookyShit()
