@@ -16,18 +16,19 @@ extends TextureRect
 var dialogue_counter = 0
 
 func _ready() -> void:
-	phoneButton.pressed.connect(handlePhoneCall.bind(0))
-	callButton1.pressed.connect(handlePhoneCall.bind(1))
-	callButton2.pressed.connect(handlePhoneCall.bind(2))
-	callButton3.pressed.connect(handlePhoneCall.bind(3))
-	callButton4.pressed.connect(handlePhoneCall.bind(4))
-	callButton5.pressed.connect(handlePhoneCall.bind(5))
-	callButton6.pressed.connect(handlePhoneCall.bind(6))
-	callButton7.pressed.connect(handlePhoneCall.bind(7))
-	callButton8.pressed.connect(handlePhoneCall.bind(8))
-	callButton9.pressed.connect(handlePhoneCall.bind(9))
-	endCallButton.pressed.connect(handlePhoneCall.bind(10))
-	keysButton.pressed.connect(handlePhoneCall.bind(11))
+	pass
+	#phoneButton.pressed.connect(handlePhoneCall.bind(0))
+	#callButton1.pressed.connect(handlePhoneCall.bind(1))
+	#callButton2.pressed.connect(handlePhoneCall.bind(2))
+	#callButton3.pressed.connect(handlePhoneCall.bind(3))
+	#callButton4.pressed.connect(handlePhoneCall.bind(4))
+	#callButton5.pressed.connect(handlePhoneCall.bind(5))
+	#callButton6.pressed.connect(handlePhoneCall.bind(6))
+	#callButton7.pressed.connect(handlePhoneCall.bind(7))
+	#callButton8.pressed.connect(handlePhoneCall.bind(8))
+	#callButton9.pressed.connect(handlePhoneCall.bind(9))
+	#endCallButton.pressed.connect(handlePhoneCall.bind(10))
+	#keysButton.pressed.connect(handlePhoneCall.bind(11))
 	
 func handlePhoneCall(call_line: int):
 	phoneButton.visible = call_line + 1 == 0

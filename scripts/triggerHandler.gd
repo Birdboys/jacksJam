@@ -9,5 +9,6 @@ var spirit_boxed_dining_room := false
 
 var has_emf := false
 var emf_master_bedroom := false
+var under_bed_found := false
 
 var is_spooky := false

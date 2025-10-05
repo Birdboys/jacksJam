@@ -1,13 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d36adc6pjlby3"]
+[gd_scene load_steps=2 format=3 uid="uid://d36adc6pjlby3"]
 
-[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xx7ry"]
-[ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="2_xx7ry"]
-[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_ex3ef"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvhvu"]
-shader = ExtResource("1_xx7ry")
-shader_parameter/flashlight_distance = 100.0
-shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+[ext_resource type="PackedScene" uid="uid://u686p03i36vd" path="res://scenes/room_scenes/master_bedroom.tscn" id="1_mlyfx"]
 
 [node name="roomButtonSetup" type="Control"]
 layout_mode = 3
@@ -35,31 +28,5 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="roomTexture" type="TextureRect" parent="roomMargin"]
-material = SubResource("ShaderMaterial_rvhvu")
+[node name="roomTexture" parent="roomMargin" instance=ExtResource("1_mlyfx")]
 layout_mode = 2
-texture = ExtResource("2_xx7ry")
-expand_mode = 1
-
-[node name="roomButtons" type="Control" parent="roomMargin/roomTexture"]
-anchors_preset = 0
-offset_right = 922.0
-offset_bottom = 502.0
-mouse_filter = 1
-
-[node name="clickerButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
-layout_mode = 0
-offset_left = 367.0
-offset_top = 301.0
-offset_right = 462.0
-offset_bottom = 366.0
-hover_text = "enter the house"
-button_id = "front_door_button"
-
-[node name="clickerButton2" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
-layout_mode = 0
-offset_left = 670.0
-offset_top = 139.0
-offset_right = 714.0
-offset_bottom = 190.0
-hover_text = "testerton wahooo"

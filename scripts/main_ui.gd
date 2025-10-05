@@ -18,7 +18,7 @@ extends Control
 var tasks := {}
 var inventory_items := {}
 var flashlight_on := false
-var can_click := true
+var can_click := false
 var current_room_resource : RoomResource
 var current_room_scene 
 var current_item := ""
@@ -28,8 +28,8 @@ func _ready() -> void:
 	flashlightButton.toggled.connect(toggleFlashlight)
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
-	#loadRoom("front_door_test")
-	loadRoom("intro_phone")
+	loadRoom("front_door_test")
+	#loadRoom("intro_phone")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#addInventoryItem("key", load("res://assets/temp/key.jpeg"))
@@ -139,6 +139,7 @@ func clearMouseText():
 
 func roomButtonPressed(button_event: String):
 	if not can_click: return
+	can_click = false
 	match button_event:
 			
 		#INTRO BUTTONS
@@ -149,39 +150,51 @@ func roomButtonPressed(button_event: String):
 			AudioHandler.playSound("pickup_phone")
 			AudioHandler.stopLoopingSound("phone_ring")
 			loadText("Phony tony's, you got ghosts we got solutions, how can I help you?")
+			current_room_scene.handlePhoneCall(0)
 		"call_line_1":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[1])
+			current_room_scene.handlePhoneCall(1)
 		"call_line_2":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[2])
+			current_room_scene.handlePhoneCall(2)
 		"call_line_3":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[3])
+			current_room_scene.handlePhoneCall(3)
 		"call_line_4":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[4])
+			current_room_scene.handlePhoneCall(4)
 		"call_line_5":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[5])
+			current_room_scene.handlePhoneCall(5)
 		"call_line_6":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[6])
+			current_room_scene.handlePhoneCall(6)
 		"call_line_7":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[7])
+			current_room_scene.handlePhoneCall(7)
 		"call_line_8":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[8])
+			current_room_scene.handlePhoneCall(8)
 		"call_line_9":
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[9])
+			current_room_scene.handlePhoneCall(9)
 		"end_call":
 			clearText()
 			AudioHandler.playSound("put_down_phone")
 			loadText(DialogueHandler.phone_call_dialogue[10])
 			addTask("grab_keys", "Take keys")
+			current_room_scene.handlePhoneCall(10)
 		"take_keys":
+			current_room_scene.handlePhoneCall(11)
 			addInventoryItem("truck_keys", load("res://assets/temp/truck_keys.jpg"))
 			completeTask("grab_keys")
 			AudioHandler.playSound("van_start")
@@ -194,14 +207,18 @@ func roomButtonPressed(button_event: String):
 		"knock_button_1":
 			AudioHandler.playSound("door_knocking")
 			loadText(DialogueHandler.front_door_dialogue[0])
+			current_room_scene.handleDialogue(1)
 		"knock_button_2":
 			AudioHandler.playSound("door_knocking")
 			loadText(DialogueHandler.front_door_dialogue[1])
+			current_room_scene.handleDialogue(2)
 		"knock_button_3":
 			AudioHandler.playSound("door_knocking")
 			loadText(DialogueHandler.front_door_dialogue[2])
+			current_room_scene.handleDialogue(3)
 		"front_door_button":
 			AudioHandler.playSound("open_door")
+			current_room_scene.handleDialogue(4)
 			await loadText(DialogueHandler.front_door_dialogue[3])
 			await get_tree().create_timer(1.0).timeout
 			loadRoom("entrance")
@@ -229,7 +246,6 @@ func roomButtonPressed(button_event: String):
 		"go_master_bedroom":
 			loadRoom("master_bedroom")
 		"go_kids_bedroom":
-			toggleDark(true)
 			loadRoom("kids_bedroom")
 			
 		#DINING ROOM BUTTONS
@@ -237,7 +253,7 @@ func roomButtonPressed(button_event: String):
 			loadText("What a lovely dining table")
 		"use_spirit_box":
 			if current_item == "spirit_box":
-				#loadText("Time for the noise")
+				loadText("Time for the noise")
 				AudioHandler.playSound("static")
 				TriggerHandler.spirit_boxed_dining_room = true
 				TriggerHandler.has_emf = true
@@ -247,7 +263,7 @@ func roomButtonPressed(button_event: String):
 				current_room_scene.placedSpiritBox()
 				
 				#TESTY FOR NOW
-				startSpooky()
+				#startSpooky()
 			else:
 				loadText("I need to use the spirit box")
 				
@@ -270,7 +286,7 @@ func roomButtonPressed(button_event: String):
 				current_room_scene.saltPlaced()
 				clearHeldItem()
 				completeTask("salt_window")
-				addTask("spirit_box", "Use spirit box\nin living room")
+				addTask("spirit_box", "Use spirit box\nin dining room")
 				addInventoryItem("spirit_box", load("res://assets/temp/spirit_box.jpg"))
 			else:
 				loadText("I need salt to put on the window")
@@ -278,6 +294,25 @@ func roomButtonPressed(button_event: String):
 		#MASTER BEDROOM BUTTONS
 		"look_dresser":
 			loadRoom("master_bedroom_dresser")
+			
+		"look_master_bed":
+			if TriggerHandler.has_emf and current_item == "emf":
+				loadText("The emf is actually triggering... something must be under the bed.")
+				TriggerHandler.under_bed_found = true
+				current_room_scene.foundUnderBed()
+				#AudioHandler.playSound("metal_detected")
+			else:
+				loadText("It's a nice bed.")
+		"look_master_table":
+			if TriggerHandler.has_emf and current_item == "emf":
+				loadText("Nothing spooky here, other than this ugly lamp.")
+				#AudioHandler.playSound("metal_detected")
+			else:
+				loadText("What an ugly lamp.")
+		"look_under_bed":
+			loadText("Goin under.")
+			#loadRoom("under_bed")
+			
 		_: pass
 	clearHeldItem()
 		
@@ -366,6 +401,8 @@ func toggleDark(on: bool):
 	RenderingServer.global_shader_parameter_set("is_dark", on)
 
 func startSpooky():
+	clearTasks()
+	addTask("leave", "Leave the house")
 	TriggerHandler.is_spooky = true
 	AudioHandler.playSound("lights_out")
 	toggleDark(true)
