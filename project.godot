@@ -18,12 +18,12 @@ config/icon="uid://sh7nx7xrrx8q"
 [autoload]
 
 AudioHandler="*res://scenes/audio_handler.tscn"
+DialogueHandler="*res://scripts/dialogueHandler.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 

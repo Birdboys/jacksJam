@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e54f5c6ildtw"
-path="res://.godot/imported/entrance.png-aed70966e12b1fa2394ab549193b0d51.ctex"
+uid="uid://nk5was6aooc4"
+path="res://.godot/imported/intro_phone.png-0b5af11e9533f76ab44052beab24eb82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/entrance.png"
-dest_files=["res://.godot/imported/entrance.png-aed70966e12b1fa2394ab549193b0d51.ctex"]
+source_file="res://assets/temp/room_views_old/intro_phone.png"
+dest_files=["res://.godot/imported/intro_phone.png-0b5af11e9533f76ab44052beab24eb82.ctex"]
 
 [params]
 

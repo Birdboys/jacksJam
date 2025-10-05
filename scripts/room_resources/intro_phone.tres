@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://c4y1l16r7i4po"]
+
+[ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_3atfk"]
+[ext_resource type="PackedScene" uid="uid://bplyv1s1vnmw5" path="res://scenes/room_scenes/intro_phone.tscn" id="1_j2ksw"]
+
+[resource]
+script = ExtResource("1_3atfk")
+room_scene = ExtResource("1_j2ksw")
+room_text = "*ring ring ring... ring ring ring..."
+metadata/_custom_type_script = "uid://3ctpp3cj2op5"

@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://dshrla1smka4m"]
+
+[ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://ctxw3pbv6vnvf" path="res://scripts/title_screen.gd" id="2_s4lrb"]
+[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="2_sa3yf"]
+
+[node name="titleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_fgkus")
+script = ExtResource("2_s4lrb")
+
+[node name="titleBG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.015686275, 0.07058824, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_sa3yf")
+theme_override_font_sizes/font_size = 96
+text = "FONY TONY'S
+GHOST EXTERMINATION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "
+
+
+
+
+
+
+CLICK TO START"
+horizontal_alignment = 1
+vertical_alignment = 1

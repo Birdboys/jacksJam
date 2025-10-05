@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpyv28n85tf68"
-path="res://.godot/imported/living_room_window.png-f03f4745ad03ff2ca2312a417b99d72f.ctex"
+uid="uid://c0h33ya6d2hnu"
+path="res://.godot/imported/intro_phone.png-282ebacaa69955e50372cf78ce7648e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/living_room_window.png"
-dest_files=["res://.godot/imported/living_room_window.png-f03f4745ad03ff2ca2312a417b99d72f.ctex"]
+source_file="res://assets/temp/color_conversion_output/intro_phone.png"
+dest_files=["res://.godot/imported/intro_phone.png-282ebacaa69955e50372cf78ce7648e1.ctex"]
 
 [params]
 

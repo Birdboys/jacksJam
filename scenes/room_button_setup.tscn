@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://d36adc6pjlby3"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xx7ry"]
-[ext_resource type="Texture2D" uid="uid://yeuks4v1f77b" path="res://assets/temp/room_views/entrance.png" id="2_0cpwa"]
+[ext_resource type="Texture2D" uid="uid://ctrq6c2to8vrw" path="res://assets/temp/room_views/intro_phone.png" id="2_0cpwa"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_ex3ef"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_0cpwa"]
 
@@ -61,43 +61,17 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="stairsButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
+[node name="phoneButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
 layout_mode = 0
-offset_left = 735.0
-offset_top = 64.0
-offset_right = 935.0
-offset_bottom = 373.0
-hover_text = "Go up stairs"
-button_id = "go_up_stairs"
-
-[node name="tableButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
-layout_mode = 0
-offset_left = 427.0
-offset_top = 204.0
-offset_right = 574.0
-offset_bottom = 295.0
-hover_text = "Go to table"
-button_id = "go_dining_room"
-
-[node name="livingButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
-layout_mode = 0
-offset_left = 538.0
-offset_top = 109.0
-offset_right = 739.0
-offset_bottom = 253.0
-hover_text = "Go to living room"
-button_id = "go_living_room"
-
-[node name="kitchenButton" parent="roomMargin/roomTexture/roomButtons" instance=ExtResource("3_ex3ef")]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 46.0
-offset_right = 417.0
-offset_bottom = 467.0
-hover_text = "Go to kitchen"
-button_id = "go_kitchen"
+offset_left = 334.0
+offset_top = 168.0
+offset_right = 647.0
+offset_bottom = 350.0
+hover_text = "Answer the phone"
+button_id = "answer_phone"
 
 [node name="backButton" type="Button" parent="roomMargin/roomTexture"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

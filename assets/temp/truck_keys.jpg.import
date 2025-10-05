@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dubuj7btp3ihq"
-path="res://.godot/imported/master_bedroom_desk.png-d63e712161c30404d67e52d307090f2f.ctex"
+uid="uid://c2h7bgeneec1s"
+path="res://.godot/imported/truck_keys.jpg-f3260665574b6b1a03a4ced8eedf8d21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/master_bedroom_desk.png"
-dest_files=["res://.godot/imported/master_bedroom_desk.png-d63e712161c30404d67e52d307090f2f.ctex"]
+source_file="res://assets/temp/truck_keys.jpg"
+dest_files=["res://.godot/imported/truck_keys.jpg-f3260665574b6b1a03a4ced8eedf8d21.ctex"]
 
 [params]
 
