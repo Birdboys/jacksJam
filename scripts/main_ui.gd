@@ -250,7 +250,7 @@ func roomButtonPressed(button_event: String):
 		"kitchen_cabinet":
 			if TriggerHandler.has_counter_key:
 				loadText("Wowwy I found a lighter")
-				addInventoryItem("lighter", load("res://assets/temp/lighter.jpg"))
+				addInventoryItem("lighter", load("res://assets/inventory_icons/lighter.png"))
 			else:
 				loadText("The cabinets are locked. Shame, I bet there's some good stuff inside.")
 		
@@ -264,6 +264,7 @@ func roomButtonPressed(button_event: String):
 			addInventoryItem("kitchen_key", load("res://assets/temp/kitchen_key.jpg"))
 		"take_kitchen_coins":
 			TriggerHandler.took_kitchen_coins = true
+			AudioHandler.playSound("coin_pickup")
 			loadText("My favorite part of the job is collecting coins… actually, I think it's spendin em’.") 
 			current_room_scene.tookCoins()
 			addInventoryItem("kitchen_coins", load("res://assets/temp/coins.jpeg"))
@@ -321,6 +322,7 @@ func roomButtonPressed(button_event: String):
 		"salt_window":
 			if current_item == "salt":
 				loadText("Usually I don't do this, but it'll prove I was actually here. Not going to do an unpaid job.")
+				AudioHandler.playSound("salt_shake")
 				TriggerHandler.salted_window = true
 				TriggerHandler.has_spirit_box = true
 				current_room_scene.saltPlaced()
