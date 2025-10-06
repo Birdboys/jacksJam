@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c01o1hmou7b1d"
-path="res://.godot/imported/spirit_box.png-c93391c0ecfb156947148e9b2e01d78a.ctex"
+uid="uid://bqsvmgs82vfk2"
+path="res://.godot/imported/grabber.png-cd5047cbdd663e2b991975299a9e7531.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/spirit_box.png"
-dest_files=["res://.godot/imported/spirit_box.png-c93391c0ecfb156947148e9b2e01d78a.ctex"]
+source_file="res://assets/temp/color_conversion_input/grabber.png"
+dest_files=["res://.godot/imported/grabber.png-cd5047cbdd663e2b991975299a9e7531.ctex"]
 
 [params]
 

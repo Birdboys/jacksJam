@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlkdoop4457sf"
-path="res://.godot/imported/upstairs.png-ce7aaa49580e67c50263dfd96473de4e.ctex"
+uid="uid://bagkdqmagmiyo"
+path="res://.godot/imported/dining_room.png-5132bcf3982e54939bae5ca02446fd02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/upstairs.png"
-dest_files=["res://.godot/imported/upstairs.png-ce7aaa49580e67c50263dfd96473de4e.ctex"]
+source_file="res://assets/temp/room_views/dining_room.png"
+dest_files=["res://.godot/imported/dining_room.png-5132bcf3982e54939bae5ca02446fd02.ctex"]
 
 [params]
 

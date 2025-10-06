@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xxyg4fdhxaqv"
-path="res://.godot/imported/salt.png-494902fbad113f71411be411e4d6f4ee.ctex"
+uid="uid://dykw56mv12m1h"
+path="res://.godot/imported/kids_bedroom_no_grabber.png-cc3ec2669ccf5540094df916a27af1f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/salt.png"
-dest_files=["res://.godot/imported/salt.png-494902fbad113f71411be411e4d6f4ee.ctex"]
+source_file="res://assets/temp/color_conversion_input/kids_bedroom_no_grabber.png"
+dest_files=["res://.godot/imported/kids_bedroom_no_grabber.png-cc3ec2669ccf5540094df916a27af1f8.ctex"]
 
 [params]
 

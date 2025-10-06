@@ -31,7 +31,7 @@ func _ready() -> void:
 	#loadRoom("entrance")
 	#loadRoom("intro_phone")
 	#await startSpooky()
-	loadRoom("entrance")
+	loadRoom("bathroom")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#startSpooky()
@@ -373,6 +373,21 @@ func roomButtonPressed(button_event: String):
 			addInventoryItem("bedroom_key", load("res://assets/inventory_icons/old_key.png"))
 			loadText("Yoink.")
 			current_room_scene.tookKey()
+		
+		#KIDS BEDROOM BUTTONS
+		"take_grabber":
+			TriggerHandler.took_grabby_arm = true
+			addInventoryItem("grabber", load("res://assets/inventory_icons/grabber.png"))
+			loadText("Nothing is out of reach for Tony Gabaghoul!")
+			current_room_scene.tookGrabber()
+		"look_teddybear":
+			loadText("Aw a little teddy weddy bear. Always tell the stupid family theres something spooky about their stuffed animals.")
+		"look_toys":
+			loadText("A buncha blocks and shapes. I could even count em if I wanted.")
+		"look_kids_lamp":
+			loadText("Now that's a nice lamp. Got a good glow to it.")
+		"look_kids_bed":
+			loadText("I never got to meet Georgie's kid.")
 		
 		#BATHROOM BUTTONS
 		"look_bathtub":

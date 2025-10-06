@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deju8euo2pxn1"
-path="res://.godot/imported/lighter.png-653b31b69aaa1404036b5d6e5a3be68e.ctex"
+uid="uid://dymka0gtpowd2"
+path="res://.godot/imported/kids_bedroom_no_grabber.png-d3be71ddbb0a621d66f2ec4efa930acf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/lighter.png"
-dest_files=["res://.godot/imported/lighter.png-653b31b69aaa1404036b5d6e5a3be68e.ctex"]
+source_file="res://assets/temp/color_conversion_output/kids_bedroom_no_grabber.png"
+dest_files=["res://.godot/imported/kids_bedroom_no_grabber.png-d3be71ddbb0a621d66f2ec4efa930acf.ctex"]
 
 [params]
 

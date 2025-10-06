@@ -1,12 +1,19 @@
 extends TextureRect
 
 @onready var spookyGuy := $spookyGuy
-
+@onready var grabberButton := $roomButtons/grabberButton
 var done_spook
 
 func _ready() -> void:
+	grabberButton.visible = not TriggerHandler.took_grabby_arm
+	if TriggerHandler.took_grabby_arm: texture = load("res://assets/temp/room_views/kids_bedroom_no_grabber.png")
+	
 	spookyGuy.mouse_entered.connect(tryDoScare)
 	spookyGuy.visible = TriggerHandler.is_dark
+
+func tookGrabber():
+	grabberButton.visible = false
+	texture = load("res://assets/temp/room_views/kids_bedroom_no_grabber.png")
 	
 func tryDoScare():
 	if not (TriggerHandler.is_dark and TriggerHandler.flashlight_on): return

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cw0kwdu6vqiir"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_xpva7"]
-[ext_resource type="Texture2D" uid="uid://dkjg1m7fis4lv" path="res://assets/temp/room_views_old/dining_table.png" id="2_q3uf6"]
+[ext_resource type="Texture2D" uid="uid://bagkdqmagmiyo" path="res://assets/temp/room_views/dining_room.png" id="2_lvmyq"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_dgmsm"]
 [ext_resource type="Script" uid="uid://d0p2ycq5e5ulq" path="res://scripts/room_scripts/dining_room_script.gd" id="3_lvmyq"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_kb8gk"]
@@ -21,7 +21,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
-texture = ExtResource("2_q3uf6")
+texture = ExtResource("2_lvmyq")
 expand_mode = 1
 script = ExtResource("3_lvmyq")
 metadata/_edit_lock_ = true

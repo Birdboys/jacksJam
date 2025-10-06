@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dogry21xs8ue4"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_w0pdm"]
-[ext_resource type="Texture2D" uid="uid://dsdcsgl1rkm5s" path="res://assets/temp/room_views_old/kids_bedroom.png" id="2_n8fpg"]
+[ext_resource type="Texture2D" uid="uid://d10e5c7ikbyhx" path="res://assets/temp/room_views/kids_bedroom.png" id="2_fp6uf"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_aef17"]
 [ext_resource type="Script" uid="uid://bmdosmpu2ei72" path="res://scripts/room_scripts/kids_bedroom_script.gd" id="3_armno"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_0s0ly"]
@@ -28,7 +28,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
-texture = ExtResource("2_n8fpg")
+texture = ExtResource("2_fp6uf")
 expand_mode = 1
 script = ExtResource("3_armno")
 metadata/_edit_lock_ = true
@@ -43,14 +43,51 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="deskButton" parent="roomButtons" instance=ExtResource("3_aef17")]
+[node name="grabberButton" parent="roomButtons" instance=ExtResource("3_aef17")]
 layout_mode = 0
-offset_left = 741.0
-offset_top = 248.0
-offset_right = 875.0
-offset_bottom = 458.0
-hover_text = "Look at desk"
-button_id = "look_kids_desk"
+offset_left = 837.0
+offset_top = 229.0
+offset_right = 902.0
+offset_bottom = 332.0
+hover_text = "Take grabber"
+button_id = "take_grabber"
+
+[node name="teddyButton" parent="roomButtons" instance=ExtResource("3_aef17")]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 141.0
+offset_right = 433.0
+offset_bottom = 193.0
+hover_text = "Look at teddybear"
+button_id = "look_teddybear"
+
+[node name="toyButton" parent="roomButtons" instance=ExtResource("3_aef17")]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 309.0
+offset_right = 784.0
+offset_bottom = 430.0
+hover_text = "Look at toys"
+button_id = "look_toys"
+
+[node name="lampButton" parent="roomButtons" instance=ExtResource("3_aef17")]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 203.0
+offset_right = 224.0
+offset_bottom = 347.0
+hover_text = "Look at lamp"
+button_id = "look_kids_lamp"
+
+[node name="bedButton" parent="roomButtons" instance=ExtResource("3_aef17")]
+layout_mode = 0
+offset_left = 246.77681
+offset_top = 194.04338
+offset_right = 583.05896
+offset_bottom = 318.71893
+rotation = 0.39905378
+hover_text = "Look at bed"
+button_id = "look_kids_bed"
 
 [node name="spookyGuy" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_armno")

@@ -66,19 +66,19 @@ button_id = "look_toilet"
 
 [node name="shelfButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
 layout_mode = 0
-offset_left = 684.0
-offset_top = 161.0
-offset_right = 811.0
-offset_bottom = 205.0
+offset_left = 699.0
+offset_top = 66.0
+offset_right = 826.0
+offset_bottom = 110.0
 hover_text = "Look at shelf"
 button_id = "look_shelf"
 
 [node name="journalButton" parent="roomButtons" instance=ExtResource("3_jh5bn")]
 layout_mode = 0
-offset_left = 684.0
-offset_top = 161.0
-offset_right = 811.0
-offset_bottom = 205.0
+offset_left = 482.0
+offset_top = 418.0
+offset_right = 555.0
+offset_bottom = 462.0
 hover_text = "Look at journal"
 button_id = "look_journal"
 

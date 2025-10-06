@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r054aqp0kc6f"
-path="res://.godot/imported/master_bedroom.png-28c4129c45db44b543ce64b69141e045.ctex"
+uid="uid://o6a62rskm5s4"
+path="res://.godot/imported/kids_bedroom.png-43e6d25f878e0919ee002490be235c43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/temp/color_conversion_input/master_bedroom.png"
-dest_files=["res://.godot/imported/master_bedroom.png-28c4129c45db44b543ce64b69141e045.ctex"]
+source_file="res://assets/temp/color_conversion_output/kids_bedroom.png"
+dest_files=["res://.godot/imported/kids_bedroom.png-43e6d25f878e0919ee002490be235c43.ctex"]
 
 [params]
 

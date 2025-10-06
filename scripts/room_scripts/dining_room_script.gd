@@ -8,7 +8,7 @@ func _ready() -> void:
 	if TriggerHandler.spirit_boxed_dining_room:
 		spiritBoxButton.visible = true
 		placeBoxButton.visible = false
-		texture = load("res://assets/temp/room_views/dining_table_boxed.png")
+		texture = load("res://assets/temp/room_views/dining_room_spirit_box.png")
 	elif TriggerHandler.has_spirit_box:
 		spiritBoxButton.visible = false
 		placeBoxButton.visible = true
@@ -18,6 +18,6 @@ func _ready() -> void:
 		placeBoxButton.visible = false
 		
 func placedSpiritBox():
-	texture = load("res://assets/temp/room_views/dining_table_boxed.png")
+	texture = load("res://assets/temp/room_views/dining_room_spirit_box.png")
 	spiritBoxButton.visible = true
 	placeBoxButton.visible = false
