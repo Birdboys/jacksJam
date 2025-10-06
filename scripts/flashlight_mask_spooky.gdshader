@@ -20,18 +20,18 @@ void fragment() {
 		if (flashlight_on){
 			float dist = sqrt(pow(vertex_pos.x-mouse_pos.x, 2) + pow(vertex_pos.y-mouse_pos.y, 2));
 			if (dist > flashlight_distance){
-				COLOR = vec4(0,0,0,0);
+				COLOR = vec4(0,0,0,0.0);
 			} else {
 				vec2 uv = vec2((vertex_pos.x-mouse_pos.x)/flashlight_distance/3.0 + 0.5, (vertex_pos.y-mouse_pos.y)/flashlight_distance/3.0 + 0.5);
 				//float light_alpha = 0.0;
 				//if (texture(point_light_dithered, uv).r > 0.5) {
 				//	light_alpha = 1.0;
 				//}
-				COLOR.a = texture(point_light_dithered, uv).r;
+				//COLOR.a = texture(point_light_dithered, uv).r;
 				//COLOR = COLOR * pow((flashlight_distance-dist)/flashlight_distance,2);
 			}
 		} else {
-			COLOR = vec4(0,0,0,0);
+			COLOR = vec4(0,0,0,0.0);
 		}
 		
 	}

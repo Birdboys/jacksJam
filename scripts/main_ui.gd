@@ -32,7 +32,6 @@ func _ready() -> void:
 	#loadRoom("front_door_test")
 	#await startSpooky()
 	loadRoom("intro_phone")
-	#loadRoom("entrance")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#startSpooky()

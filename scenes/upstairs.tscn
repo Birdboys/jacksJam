@@ -1,15 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbg0wylstsg8e"]
+[gd_scene load_steps=14 format=3 uid="uid://cbl6h6qq68j6l"]
 
-[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_hkd1j"]
-[ext_resource type="Texture2D" uid="uid://csgyss8u88016" path="res://assets/temp/room_views/upstairs.png" id="2_hkd1j"]
-[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_3v4ns"]
-[ext_resource type="Script" uid="uid://bwutvd2g0pcp5" path="res://scripts/room_scripts/upstairs_script.gd" id="3_q2v2e"]
-[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_q2v2e"]
-[ext_resource type="Texture2D" uid="uid://bsetsn46dsh1a" path="res://assets/temp/color_conversion_output/ceiling_walker.png" id="6_meklh"]
-[ext_resource type="Shader" uid="uid://djavp7slx4gsn" path="res://scripts/flashlight_mask_spooky.gdshader" id="6_q2v2e"]
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_6hmx5"]
+[ext_resource type="Texture2D" uid="uid://csgyss8u88016" path="res://assets/temp/room_views/upstairs.png" id="2_o18a1"]
+[ext_resource type="Script" uid="uid://bwutvd2g0pcp5" path="res://scripts/room_scripts/upstairs_script.gd" id="3_ubpyk"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="4_5ownu"]
+[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="5_tt2ng"]
+[ext_resource type="Shader" uid="uid://djavp7slx4gsn" path="res://scripts/flashlight_mask_spooky.gdshader" id="6_q1slb"]
+[ext_resource type="Texture2D" uid="uid://bsetsn46dsh1a" path="res://assets/temp/color_conversion_output/ceiling_walker.png" id="7_nved1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
-shader = ExtResource("1_hkd1j")
+shader = ExtResource("1_6hmx5")
 shader_parameter/flashlight_distance = 100.0
 shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
@@ -22,15 +22,15 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q23t2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dghyd"]
-shader = ExtResource("6_q2v2e")
-shader_parameter/flashlight_distance = 100.0
+shader = ExtResource("6_q1slb")
+shader_parameter/flashlight_distance = 500.0
 shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
-texture = ExtResource("2_hkd1j")
+texture = ExtResource("2_o18a1")
 expand_mode = 1
-script = ExtResource("3_q2v2e")
+script = ExtResource("3_ubpyk")
 metadata/_edit_lock_ = true
 
 [node name="roomButtons" type="Control" parent="."]
@@ -43,7 +43,7 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="downButton" parent="roomButtons" instance=ExtResource("3_3v4ns")]
+[node name="downButton" parent="roomButtons" instance=ExtResource("4_5ownu")]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 157.0
@@ -52,7 +52,7 @@ offset_bottom = 455.0
 hover_text = "Go down stairs"
 button_id = "go_down_stairs"
 
-[node name="bathroomButton" parent="roomButtons" instance=ExtResource("3_3v4ns")]
+[node name="bathroomButton" parent="roomButtons" instance=ExtResource("4_5ownu")]
 layout_mode = 0
 offset_left = 537.0
 offset_top = 149.0
@@ -61,7 +61,7 @@ offset_bottom = 378.0
 hover_text = "Go to bathroom"
 button_id = "go_bathroom"
 
-[node name="masterButton" parent="roomButtons" instance=ExtResource("3_3v4ns")]
+[node name="masterButton" parent="roomButtons" instance=ExtResource("4_5ownu")]
 layout_mode = 0
 offset_left = 436.0
 offset_top = 183.0
@@ -70,7 +70,7 @@ offset_bottom = 344.0
 hover_text = "Go to master bedroom"
 button_id = "go_master_bedroom"
 
-[node name="kidsButton" parent="roomButtons" instance=ExtResource("3_3v4ns")]
+[node name="kidsButton" parent="roomButtons" instance=ExtResource("4_5ownu")]
 layout_mode = 0
 offset_left = 575.0
 offset_top = 13.0
@@ -91,7 +91,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("4_q2v2e")
+theme_override_fonts/font = ExtResource("5_tt2ng")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0cpwa")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ex3ef")
@@ -109,4 +109,4 @@ offset_right = 742.0
 offset_bottom = 362.0
 rotation = 1.5707964
 scale = Vector2(0.41368544, 0.41368544)
-texture = ExtResource("6_meklh")
+texture = ExtResource("7_nved1")

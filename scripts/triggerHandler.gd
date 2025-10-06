@@ -30,3 +30,5 @@ var took_lighter := false
 var safe_opened := false
 #SCARES
 var done_kids_bedroom_scare := false
+var done_hallway_scare := false
+var done_kitchen_scare := false

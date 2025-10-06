@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5tt0x"]
 shader = ExtResource("1_1elf3")
-shader_parameter/flashlight_distance = 500.0
+shader_parameter/flashlight_distance = 100.0
 shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpv4p"]

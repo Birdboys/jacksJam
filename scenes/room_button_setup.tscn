@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://d36adc6pjlby3"]
+[gd_scene load_steps=2 format=3 uid="uid://d36adc6pjlby3"]
+
+[ext_resource type="PackedScene" uid="uid://bdrvqo8semc75" path="res://scenes/room_scenes/kitchen.tscn" id="1_mlyfx"]
 
 [node name="roomButtonSetup" type="Control"]
 layout_mode = 3
@@ -25,3 +27,6 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
+
+[node name="roomTexture" parent="roomMargin" instance=ExtResource("1_mlyfx")]
+layout_mode = 2
