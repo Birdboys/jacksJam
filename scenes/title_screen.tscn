@@ -95,5 +95,6 @@ uri = "https://coleverc.itch.io/"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Jakasaurus"
+uri = "https://jakasaurus.itch.io/"
 
 [connection signal="pressed" from="VBoxContainer/startButton" to="." method="_on_start_button_pressed"]
