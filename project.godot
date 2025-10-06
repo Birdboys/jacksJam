@@ -48,5 +48,5 @@ flashlight_on={
 }
 point_light_dithered={
 "type": "sampler2D",
-"value": "res://assets/point_light_dithered.png"
+"value": "res://assets/flashlighttexture.jpg"
 }

@@ -1,12 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d36adc6pjlby3"]
-
-[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_0cpwa"]
-[ext_resource type="PackedScene" uid="uid://bbpa7evyfee2m" path="res://scenes/room_scenes/under_bed.tscn" id="1_mlyfx"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
-shader = ExtResource("1_0cpwa")
-shader_parameter/flashlight_distance = 500.0
-shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+[gd_scene format=3 uid="uid://d36adc6pjlby3"]
 
 [node name="roomButtonSetup" type="Control"]
 layout_mode = 3
@@ -33,7 +25,3 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-
-[node name="roomTexture" parent="roomMargin" instance=ExtResource("1_mlyfx")]
-material = SubResource("ShaderMaterial_0cpwa")
-layout_mode = 2

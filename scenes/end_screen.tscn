@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0lw2i12f42dr"]
+
+[ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_jc7ji"]
+[ext_resource type="Texture2D" uid="uid://cyuivaufmbyuk" path="res://assets/temp/color_conversion_output/end_house.png" id="1_kq7ac"]
+[ext_resource type="AudioStream" uid="uid://cwltogfhwx420" path="res://assets/sounds/menu-music.wav" id="2_6e1uj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87vmq"]
+bg_color = Color(0, 0.015686275, 0.07058824, 1)
+
+[node name="endScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_jc7ji")
+
+[node name="endTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kq7ac")
+
+[node name="textBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 112.0
+offset_bottom = 347.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="mouseLabel" type="Label" parent="textBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_87vmq")
+text = "   ANOTHER CASE SOLVED   "
+horizontal_alignment = 1
+
+[node name="mouseLabel2" type="Label" parent="textBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_87vmq")
+text = "   FOR TONY GABAGHOUL   "
+
+[node name="thanks" type="Label" parent="textBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_87vmq")
+text = "   THANKS FOR PLAYING   "
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6e1uj")
+autoplay = true

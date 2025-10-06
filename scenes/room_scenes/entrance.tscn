@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_mpv4p"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_5tt0x"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tt0x"]
 shader = ExtResource("1_1elf3")
 shader_parameter/flashlight_distance = 500.0
 shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
@@ -19,7 +19,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouuyf"]
 
 [node name="roomTexture" type="TextureRect"]
-material = SubResource("ShaderMaterial_0cpwa")
+material = SubResource("ShaderMaterial_5tt0x")
 texture = ExtResource("2_5tt0x")
 expand_mode = 1
 metadata/_edit_lock_ = true
@@ -87,5 +87,5 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_mpv4p")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_37ssk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_csb71")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ouuyf")
-text = "BACK"
+text = "TO FRONT DOOR"
 flat = true

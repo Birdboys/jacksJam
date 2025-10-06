@@ -23,11 +23,11 @@ void fragment() {
 				COLOR = dark_color;
 			} else {
 				vec2 uv = vec2((vertex_pos.x-mouse_pos.x)/flashlight_distance/3.0 + 0.5, (vertex_pos.y-mouse_pos.y)/flashlight_distance/3.0 + 0.5);
-				float light_alpha = 0.0;
-				if (texture(point_light_dithered, uv).r > 0.5) {
-					light_alpha = 1.0;
-				}
-				COLOR.a = light_alpha;
+				//float light_alpha = 0.0;
+				//if (texture(point_light_dithered, uv).r > 0.5) {
+				//	light_alpha = 1.0;
+				//}
+				COLOR.a = texture(point_light_dithered, uv).r;
 			}
 		} else {
 			COLOR = dark_color;

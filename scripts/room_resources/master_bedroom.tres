@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_2dld1")
 room_scene = ExtResource("1_p13cx")
-room_text = "Hmmm… This is where the good stuff usually is. Their 'ghost' might make a little gold disappear…"
+room_text = "This is where the good stuff usually is. Their 'ghost' might make a little gold disappear…"
 back_room_id = "upstairs"
 metadata/_custom_type_script = "uid://3ctpp3cj2op5"

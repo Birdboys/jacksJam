@@ -9,7 +9,7 @@ func _ready() -> void:
 	if TriggerHandler.took_grabby_arm: texture = load("res://assets/temp/room_views/kids_bedroom_no_grabber.png")
 	
 	spookyGuy.mouse_entered.connect(tryDoScare)
-	spookyGuy.visible = TriggerHandler.is_dark
+	spookyGuy.visible = TriggerHandler.is_dark and not TriggerHandler.done_kids_bedroom_scare
 
 func tookGrabber():
 	grabberButton.visible = false
@@ -23,5 +23,5 @@ func tryDoScare():
 func doScare():
 	TriggerHandler.done_kids_bedroom_scare = true
 	var scare_tween = get_tree().create_tween()
-	scare_tween.tween_property(spookyGuy, "position", Vector2(936.0, 8.0), 0.6)
+	scare_tween.tween_property(spookyGuy, "position", Vector2(936.0, 8.0), 1.5)
 	scare_tween.tween_callback(spookyGuy.queue_free)

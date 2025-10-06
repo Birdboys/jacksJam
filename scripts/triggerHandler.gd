@@ -24,6 +24,7 @@ var knocked_journal_down := false
 var is_spooky := false
 
 var took_bedroom_key := false
+var opened_kids_door := false
 var took_lighter := false
 
 var safe_opened := false

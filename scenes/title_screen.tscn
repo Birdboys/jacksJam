@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dshrla1smka4m"]
+[gd_scene load_steps=5 format=3 uid="uid://dshrla1smka4m"]
 
 [ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://ctxw3pbv6vnvf" path="res://scripts/title_screen.gd" id="2_s4lrb"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="2_sa3yf"]
+[ext_resource type="AudioStream" uid="uid://cwltogfhwx420" path="res://assets/sounds/menu-music.wav" id="4_mgrm8"]
 
 [node name="titleScreen" type="Control"]
 layout_mode = 3
@@ -51,26 +52,30 @@ theme_override_font_sizes/font_size = 40
 text = "Click Here to Play"
 flat = true
 
-[node name="credits" type="HBoxContainer" parent="."]
+[node name="bottomVBox" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = -23.0
-offset_right = 121.0
+offset_top = -102.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 17
+alignment = 2
 
-[node name="created" type="Label" parent="credits"]
+[node name="created" type="Label" parent="bottomVBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Check out our pages:"
+horizontal_alignment = 1
 
-[node name="colby" type="LinkButton" parent="credits"]
+[node name="credits" type="HBoxContainer" parent="bottomVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="colby" type="LinkButton" parent="bottomVBox/credits"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("2_sa3yf")
@@ -78,15 +83,15 @@ theme_override_font_sizes/font_size = 40
 text = "BirdBoys"
 uri = "https://birdboys.itch.io/"
 
-[node name="reagan" type="LinkButton" parent="credits"]
+[node name="reagan" type="LinkButton" parent="bottomVBox/credits"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
-text = "Recarri"
+text = "Recari"
 uri = "https://www.artstation.com/recari"
 
-[node name="kyle" type="LinkButton" parent="credits"]
+[node name="kyle" type="LinkButton" parent="bottomVBox/credits"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("2_sa3yf")
@@ -94,7 +99,7 @@ theme_override_font_sizes/font_size = 40
 text = "DrSanic"
 uri = "https://drsanic.itch.io/"
 
-[node name="cole" type="LinkButton" parent="credits"]
+[node name="cole" type="LinkButton" parent="bottomVBox/credits"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("2_sa3yf")
@@ -102,12 +107,29 @@ theme_override_font_sizes/font_size = 40
 text = "Cole"
 uri = "https://coleverc.itch.io/"
 
-[node name="jake" type="LinkButton" parent="credits"]
+[node name="jake" type="LinkButton" parent="bottomVBox/credits"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "Jakasaurus"
 uri = "https://jakasaurus.itch.io/"
+
+[node name="credits_link" type="LinkButton" parent="bottomVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
+theme_override_font_sizes/font_size = 40
+text = "Credits"
+uri = "https://docs.google.com/document/d/16lQ_bHRvHn3V99pwqulWFyCwUvXoTfiXsFnJagFvBSU/edit?tab=t.0"
+
+[node name="HSeparator" type="HSeparator" parent="bottomVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mgrm8")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/startButton" to="." method="_on_start_button_pressed"]

@@ -29,9 +29,10 @@ func _ready() -> void:
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
 	#loadRoom("entrance")
-	loadRoom("front_door_test")
+	#loadRoom("front_door_test")
 	#await startSpooky()
-	#loadRoom("under_bed")
+	loadRoom("intro_phone")
+	#loadRoom("entrance")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#startSpooky()
@@ -129,7 +130,7 @@ func loadText(t):
 	for x in range(len(t)):
 		#if not can_click: return
 		descriptionText.visible_characters += 1
-		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.5).timeout
+		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.04).timeout
 		else: 
 			AudioHandler.playSound("typewriter")
 			await get_tree().create_timer(0.02).timeout
@@ -186,22 +187,22 @@ func roomButtonPressed(button_event: String):
 			clearText()
 			loadText(DialogueHandler.phone_call_dialogue[7])
 			current_room_scene.handlePhoneCall(7)
-		"call_line_8":
-			clearText()
-			loadText(DialogueHandler.phone_call_dialogue[8])
-			current_room_scene.handlePhoneCall(8)
-		"call_line_9":
-			clearText()
-			loadText(DialogueHandler.phone_call_dialogue[9])
-			current_room_scene.handlePhoneCall(9)
+		#"call_line_8":
+			#clearText()
+			#loadText(DialogueHandler.phone_call_dialogue[8])
+			#current_room_scene.handlePhoneCall(8)
+		#"call_line_9":
+			#clearText()
+			#loadText(DialogueHandler.phone_call_dialogue[9])
+			#current_room_scene.handlePhoneCall(9)
 		"end_call":
 			clearText()
 			AudioHandler.playSound("put_down_phone")
-			loadText(DialogueHandler.phone_call_dialogue[10])
+			loadText(DialogueHandler.phone_call_dialogue[8])
 			addTask("grab_keys", "Take keys")
-			current_room_scene.handlePhoneCall(10)
+			current_room_scene.handlePhoneCall(8)
 		"take_keys":
-			current_room_scene.handlePhoneCall(11)
+			current_room_scene.handlePhoneCall(9)
 			current_room_scene.keysTaken()
 			addInventoryItem("truck_keys", load("res://assets/inventory_icons/keys.png"))
 			completeTask("grab_keys")
@@ -233,6 +234,7 @@ func roomButtonPressed(button_event: String):
 			completeTask("enter_house")
 			#clearTasks()
 			removeInventoryItem("key")
+			clearTasks()
 			addTask("salt_window", "Salt living \nroom window")
 			addInventoryItem("salt", load("res://assets/inventory_icons/salt.png"))
 		
@@ -248,12 +250,15 @@ func roomButtonPressed(button_event: String):
 		
 		#FRONT DOOR INSIDE BUTTONS:
 		"leave_house":
-			if not TriggerHandler.is_spooky:
-				loadText("Nah, can't leave yet. I'm a scammer but Georgie deserves more than this.")
-			elif not TriggerHandler.took_lighter:
+			if current_item == "lighter":
+				await loadText("IM FREE")
+				await get_tree().create_timer(2.0).timeout
+				get_tree().change_scene_to_file("res://scenes/end_screen.tscn")
+			elif TriggerHandler.is_spooky:
 				loadText("Damnit! It's locked, I'm trapped. Gotta find another way to get through.")
 			else:
-				loadText("IM FREE")
+				loadText("Nah, can't leave yet. I'm a scammer but Georgie deserves more than this.")
+
 				
 		#KITCHEN BUTTONS:
 		"kitchen_fridge":
@@ -265,9 +270,12 @@ func roomButtonPressed(button_event: String):
 		"kitchen_sink":
 			loadText("They clearly need a dish washing schedule.")
 		"kitchen_cabinet":
-			if TriggerHandler.took_counter_key:
+			if TriggerHandler.took_lighter:
+				loadText("Nothing else to find in this guy.")
+			elif TriggerHandler.took_counter_key:
 				loadText("Wowwy I found a lighter")
 				addInventoryItem("lighter", load("res://assets/inventory_icons/lighter.png"))
+				TriggerHandler.took_lighter = true
 			else:
 				loadText("The cabinets are locked. Shame, I bet there's some good stuff inside.")
 		
@@ -289,7 +297,11 @@ func roomButtonPressed(button_event: String):
 		"go_master_bedroom":
 			loadRoom("master_bedroom")
 		"go_kids_bedroom":
-			if current_item == "bedroom_key":
+			if TriggerHandler.opened_kids_door:
+				AudioHandler.playSound("open_door")
+				loadRoom("kids_bedroom")
+			elif current_item == "bedroom_key":
+				TriggerHandler.opened_kids_door = true
 				AudioHandler.playSound("open_door")
 				loadRoom("kids_bedroom")
 			else:
@@ -356,7 +368,7 @@ func roomButtonPressed(button_event: String):
 				current_room_scene.foundUnderBed()
 				AudioHandler.playSound("metal_detector")
 				completeTask("emf")
-				addTask("under_bed", "Check under the bed")
+				addTask("under_bed", "Check under\nthe bed")
 			else:
 				loadText("It's a nice bed.")
 		"look_master_table":
@@ -412,10 +424,15 @@ func roomButtonPressed(button_event: String):
 		"look_toilet":
 			loadText("Gah! Who didn't flush! Animals... animals I tell ya.")
 		"look_shelf":
-			if current_item == "grabber":
-				current_room_scene.journalFell()
-				TriggerHandler.knocked_journal_down = true
-				loadText("Success! Its... a journal. I guess I can read what's inside.")
+			if TriggerHandler.knocked_journal_down:
+				loadText("Nothing up there anymore, it's just a shelf.")
+			elif current_item == "grabber":
+				if not TriggerHandler.knocked_journal_down:
+					current_room_scene.journalFell()
+					TriggerHandler.knocked_journal_down = true
+					loadText("Success! Its... a journal. I guess I can read what's inside.")
+				else:
+					loadText("Nothing up there anymore, it's just a shelf.")
 			else:
 				loadText("I think there's something up there, but I can't reach it.")
 		"look_journal":
@@ -458,6 +475,7 @@ func addTask(task_id, task_text):
 	new_task_label.theme_type_variation = "taskUnfinished"
 	new_task_label.text = task_text
 	tasks[task_id] = new_task_label
+	#toggleTaskInventoryPanels(0)
 
 func completeTask(task_id):
 	if task_id not in tasks: return
@@ -522,6 +540,9 @@ func startSpooky():
 
 func safeOpened():
 	if not can_click: return
+	if TriggerHandler.took_counter_key:
+		loadText("Nothing else in this bad boy.")
+		return
 	AudioHandler.playSound("open_door")
 	loadText("Haha! Yes! Open sesame. Oooh, there's a key inside.")
 	TriggerHandler.took_counter_key = true

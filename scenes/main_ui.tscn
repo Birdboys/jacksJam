@@ -1,10 +1,10 @@
 [gd_scene load_steps=21 format=3 uid="uid://g7in0hqcsvgm"]
 
 [ext_resource type="Theme" uid="uid://bxfk4b25h8yn4" path="res://assets/themes/base_theme.tres" id="1_fnul3"]
-[ext_resource type="Texture2D" uid="uid://iv7lq5thbqbp" path="res://assets/temp/flashlight_off.png" id="2_513t2"]
 [ext_resource type="Script" uid="uid://d4btmc2hn6mos" path="res://scripts/main_ui.gd" id="2_e6fyy"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="3_scoti"]
-[ext_resource type="Texture2D" uid="uid://dx434im04v6ri" path="res://assets/temp/flashlight_on.png" id="4_j6a7c"]
+[ext_resource type="Texture2D" uid="uid://v5fd42fcwbgc" path="res://assets/flashlight.png" id="4_scoti"]
+[ext_resource type="Texture2D" uid="uid://f8ogroef40v6" path="res://assets/flashlight_on.png" id="5_i1gbh"]
 
 [sub_resource type="Animation" id="Animation_kyx1g"]
 length = 0.001
@@ -334,7 +334,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
 theme_override_fonts/font = ExtResource("3_scoti")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 36
 autowrap_mode = 2
 visible_characters_behavior = 1
 
@@ -360,10 +360,11 @@ theme_override_constants/margin_bottom = 16
 visible = false
 layout_mode = 2
 toggle_mode = true
-texture_normal = ExtResource("2_513t2")
-texture_pressed = ExtResource("4_j6a7c")
+texture_normal = ExtResource("4_scoti")
+texture_pressed = ExtResource("5_i1gbh")
 ignore_texture_size = true
 stretch_mode = 5
+flip_h = true
 
 [node name="bottomUIAnim" type="AnimationPlayer" parent="uiMargin/uiCont/botHbox"]
 libraries = {

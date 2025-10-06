@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://7x603v3oi157"]
+[gd_scene load_steps=5 format=3 uid="uid://7x603v3oi157"]
 
 [ext_resource type="Script" uid="uid://c2qnmbhoaud1h" path="res://scripts/audio_handler.gd" id="1_hk86o"]
 [ext_resource type="AudioStream" uid="uid://bbyoapq251ugd" path="res://assets/sounds/phone_ringing.mp3" id="2_m0grf"]
 [ext_resource type="AudioStream" uid="uid://btgppbiju6sru" path="res://assets/sounds/darkAmbience.mp3" id="3_7fwcy"]
+[ext_resource type="AudioStream" uid="uid://i2apprp501dd" path="res://assets/sounds/rain.mp3" id="3_11bbw"]
 
 [node name="audioHandler" type="Camera3D"]
 script = ExtResource("1_hk86o")
@@ -11,6 +12,10 @@ script = ExtResource("1_hk86o")
 
 [node name="phoneSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_m0grf")
+
+[node name="rainSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_11bbw")
+autoplay = true
 
 [node name="spookyAmbience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7fwcy")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c4ovfy2jflmpc"]
 
-[ext_resource type="Texture2D" uid="uid://d1onmdliwydgi" path="res://assets/temp/houserton.png" id="1_2bj3l"]
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_7a0ik"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="2_7a0ik"]
+[ext_resource type="Texture2D" uid="uid://bcm6kl0ixjwgs" path="res://assets/temp/room_views/front_door_outside.png" id="2_rvhvu"]
 [ext_resource type="Script" uid="uid://btywxiwj5ib3n" path="res://scripts/room_scripts/front_door_script.gd" id="3_rvhvu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rvhvu"]
@@ -12,7 +12,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_rvhvu")
-texture = ExtResource("1_2bj3l")
+texture = ExtResource("2_rvhvu")
 expand_mode = 1
 script = ExtResource("3_rvhvu")
 
@@ -24,39 +24,39 @@ mouse_filter = 1
 
 [node name="knockButton1" parent="roomButtons" instance=ExtResource("2_7a0ik")]
 layout_mode = 0
-offset_left = 367.0
-offset_top = 301.0
-offset_right = 462.0
-offset_bottom = 366.0
+offset_left = 305.0
+offset_top = 18.0
+offset_right = 659.0
+offset_bottom = 512.0
 hover_text = "Knock on door"
 button_id = "knock_button_1"
 
 [node name="knockButton2" parent="roomButtons" instance=ExtResource("2_7a0ik")]
 visible = false
 layout_mode = 0
-offset_left = 367.0
-offset_top = 301.0
-offset_right = 462.0
-offset_bottom = 366.0
+offset_left = 331.0
+offset_top = 17.0
+offset_right = 671.0
+offset_bottom = 504.0
 hover_text = "Knock again"
 button_id = "knock_button_2"
 
 [node name="knockButton3" parent="roomButtons" instance=ExtResource("2_7a0ik")]
 visible = false
 layout_mode = 0
-offset_left = 367.0
-offset_top = 301.0
-offset_right = 462.0
-offset_bottom = 366.0
+offset_left = 311.0
+offset_top = 12.0
+offset_right = 670.0
+offset_bottom = 505.0
 hover_text = "Knock again"
 button_id = "knock_button_3"
 
 [node name="enterButton" parent="roomButtons" instance=ExtResource("2_7a0ik")]
 visible = false
 layout_mode = 0
-offset_left = 367.0
-offset_top = 301.0
-offset_right = 462.0
-offset_bottom = 366.0
+offset_left = 309.0
+offset_top = 18.0
+offset_right = 691.0
+offset_bottom = 499.0
 hover_text = "Enter house"
 button_id = "front_door_button"
