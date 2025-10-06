@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://dogry21xs8ue4"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_w0pdm"]
-[ext_resource type="Texture2D" uid="uid://d10e5c7ikbyhx" path="res://assets/temp/room_views/kids_bedroom.png" id="2_fp6uf"]
+[ext_resource type="Texture2D" uid="uid://o6a62rskm5s4" path="res://assets/temp/room_views/kids_bedroom.png" id="2_fp6uf"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_aef17"]
 [ext_resource type="Script" uid="uid://bmdosmpu2ei72" path="res://scripts/room_scripts/kids_bedroom_script.gd" id="3_armno"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_0s0ly"]
-[ext_resource type="Texture2D" uid="uid://cro4susgbpda2" path="res://assets/spooks/spooky_face.png" id="4_kravx"]
 [ext_resource type="Shader" uid="uid://djavp7slx4gsn" path="res://scripts/flashlight_mask_spooky.gdshader" id="5_fp6uf"]
+[ext_resource type="Texture2D" uid="uid://btv7ueixt06xk" path="res://assets/temp/color_conversion_input/shadow_ghost.png" id="6_fp6uf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
 shader = ExtResource("1_w0pdm")
@@ -96,7 +96,7 @@ offset_left = -44.0
 offset_top = -14.0
 offset_right = 155.99976
 offset_bottom = 203.0
-texture = ExtResource("4_kravx")
+texture = ExtResource("6_fp6uf")
 expand_mode = 1
 stretch_mode = 5
 

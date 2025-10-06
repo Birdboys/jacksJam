@@ -249,7 +249,8 @@ func roomButtonPressed(button_event: String):
 		
 		#FRONT DOOR INSIDE BUTTONS:
 		"leave_house":
-			if current_item == "lighter":
+			if current_item == "lighter" and not TriggerHandler.left_house:
+				TriggerHandler.left_house = true
 				await loadText("IM FREE")
 				await get_tree().create_timer(2.0).timeout
 				get_tree().change_scene_to_file("res://scenes/end_screen.tscn")
@@ -363,11 +364,12 @@ func roomButtonPressed(button_event: String):
 		"look_master_bed":
 			if TriggerHandler.has_emf and current_item == "emf":
 				loadText("The metal detector is triggering... something must be under the bed.")
-				TriggerHandler.under_bed_found = true
-				current_room_scene.foundUnderBed()
 				AudioHandler.playSound("metal_detector")
-				completeTask("emf")
-				addTask("under_bed", "Check under\nthe bed")
+				if not TriggerHandler.under_bed_found:
+					addTask("under_bed", "Check under\nthe bed")
+					TriggerHandler.under_bed_found = true
+					current_room_scene.foundUnderBed()
+					completeTask("emf")
 			else:
 				loadText("It's a nice bed.")
 		"look_master_table":
@@ -384,7 +386,7 @@ func roomButtonPressed(button_event: String):
 		
 		#UNDER BED BUTTONS
 		"open_safe": 
-			if TriggerHandler.took_counter_key:
+			if TriggerHandler.safe_opened:
 				loadText("Shame there was only a key, but I'm sure it'll come in handy somewhere.")
 			else:
 				loadText("Ooooh, a safe! There's gotta be something nice in here.")
@@ -456,6 +458,7 @@ func handleRoomEnterEvent(event_id):
 func handleBackButtonPressed(room_id):
 	if not can_click: return
 	if room_id == "master_bedroom" and not TriggerHandler.is_spooky and current_room_resource.room_flashlight_on_event == "under_bed":
+		can_click = false
 		await startSpooky()
 	loadRoom(room_id)
 	
@@ -487,7 +490,8 @@ func removeTask(task_id):
 	
 func clearTasks():
 	for t in tasks:
-		tasks[t].queue_free()
+		if tasks[t]: tasks[t].queue_free()
+		#tasks[t].queue_free()
 
 func addInventoryItem(item_id, item_image):
 	var new_inventory_item = load("res://scenes/inventory_item.tscn").instantiate() as InventoryItem
@@ -528,7 +532,7 @@ func toggleDark(on: bool):
 	RenderingServer.global_shader_parameter_set("is_dark", on)
 
 func startSpooky():
-	clearTasks()
+	await clearTasks()
 	addTask("leave", "Leave the house")
 	TriggerHandler.is_spooky = true
 	AudioHandler.playSound("lights_out")
@@ -539,13 +543,14 @@ func startSpooky():
 
 func safeOpened():
 	if not can_click: return
-	if TriggerHandler.took_counter_key:
-		loadText("Nothing else in this bad boy.")
-		return
+	can_click = false
 	AudioHandler.playSound("open_door")
 	loadText("Haha! Yes! Open sesame. Oooh, there's a key inside.")
+	TriggerHandler.safe_opened = true
 	TriggerHandler.took_counter_key = true
 	addInventoryItem("counter_key", load("res://assets/inventory_icons/old_key.png"))
+	#await startSpooky()
+	#loadRoom("master_bedroom")
 	
 func safeFailed():
 	if not can_click: return

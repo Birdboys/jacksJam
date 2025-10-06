@@ -2,7 +2,7 @@ extends Node
 
 @onready var phone_call_dialogue := [
 	"Phony Tony's, you got ghosts we got solutions, how can I help you?",
-	"Tony gabaghoul?",
+	"Tony Gabaghoul?",
 	"The one and only.",
 	"I'd like to get the usual 'Primo Service Package.'",
 	"Is that you Georgie? I haven't heard from you while now.",
