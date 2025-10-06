@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://7moayh2xisgn"]
+[gd_scene load_steps=10 format=3 uid="uid://7moayh2xisgn"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_w37r1"]
 [ext_resource type="Texture2D" uid="uid://7t42rxd5t5uy" path="res://assets/temp/room_views/front_door.png" id="2_0fjlh"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_sk7xw"]
+[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_0fjlh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
 shader = ExtResource("1_w37r1")
 shader_parameter/flashlight_distance = 100.0
 shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk7xw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_leepr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjqg3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nabha"]
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
@@ -33,3 +42,23 @@ offset_right = 662.0
 offset_bottom = 519.0
 hover_text = "Leave house"
 button_id = "leave_house"
+
+[node name="backButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 105.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_0fjlh")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sk7xw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_leepr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rjqg3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nabha")
+text = "BACK"
+flat = true

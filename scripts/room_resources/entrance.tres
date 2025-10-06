@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="RoomResource" load_steps=3 format=3 uid="uid://bk07q5bdoqgty"]
 
-[ext_resource type="PackedScene" uid="uid://hvm3g08pv2vj" path="res://scenes/room_scenes/entrance.tscn" id="1_dr2md"]
+[ext_resource type="PackedScene" uid="uid://duovwvyw4fbxe" path="res://scenes/room_scenes/entrance.tscn" id="1_dr2md"]
 [ext_resource type="Script" uid="uid://3ctpp3cj2op5" path="res://scripts/room_data.gd" id="1_rvg3d"]
 
 [resource]
 script = ExtResource("1_rvg3d")
 room_scene = ExtResource("1_dr2md")
 room_text = "The entrance to the house"
+back_room_id = "inside_front_door"
 metadata/_custom_type_script = "uid://3ctpp3cj2op5"
