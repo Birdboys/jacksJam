@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dlfufg753uwy4"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_1ai8l"]
-[ext_resource type="Texture2D" uid="uid://c65bw2vdly322" path="res://assets/temp/room_views_old/living_room.png" id="2_mqcth"]
+[ext_resource type="Texture2D" uid="uid://c65bw2vdly322" path="res://assets/temp/room_views/living_room.png" id="2_1ai8l"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_fjq7s"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_uybgx"]
 
@@ -20,7 +20,7 @@ shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
 
 [node name="roomTexture" type="TextureRect"]
 material = SubResource("ShaderMaterial_0cpwa")
-texture = ExtResource("2_mqcth")
+texture = ExtResource("2_1ai8l")
 expand_mode = 1
 metadata/_edit_lock_ = true
 

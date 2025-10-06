@@ -1,0 +1,238 @@
+[gd_scene load_steps=12 format=3 uid="uid://bbpa7evyfee2m"]
+
+[ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_uqpln"]
+[ext_resource type="Texture2D" uid="uid://s8ld1yyulx8g" path="res://assets/temp/color_conversion_output/under_bed.png" id="2_b2xhd"]
+[ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_6jlfe"]
+[ext_resource type="Script" uid="uid://ccvislytbu4oo" path="res://scripts/room_scripts/under_bed_script.gd" id="3_b2xhd"]
+[ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_p1lue"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cpwa"]
+shader = ExtResource("1_uqpln")
+shader_parameter/flashlight_distance = 500.0
+shader_parameter/dark_color = Vector4(0, 0.016, 0.071, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpv4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37ssk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csb71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouuyf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cpwa"]
+bg_color = Color(0, 0.015686275, 0.07058824, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+
+[node name="roomTexture" type="TextureRect"]
+material = SubResource("ShaderMaterial_0cpwa")
+texture = ExtResource("2_b2xhd")
+expand_mode = 1
+script = ExtResource("3_b2xhd")
+metadata/_edit_lock_ = true
+
+[node name="roomButtons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="safeButton" parent="roomButtons" instance=ExtResource("3_6jlfe")]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 134.0
+offset_right = 629.0
+offset_bottom = 428.0
+hover_text = "Open safe"
+button_id = "open_safe"
+
+[node name="backButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 105.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_colors/font_outline_color = Color(0, 0.015686275, 0.07058824, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mpv4p")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_37ssk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_csb71")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ouuyf")
+text = "BACK"
+flat = true
+
+[node name="safeUI" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 320.0
+offset_bottom = 416.0
+columns = 3
+
+[node name="one" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "1"
+
+[node name="two" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "2"
+
+[node name="three" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "3"
+
+[node name="four" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "4"
+
+[node name="five" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "5"
+
+[node name="six" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "6"
+
+[node name="seven" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "7"
+
+[node name="eight" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "8"
+
+[node name="nine" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "9"
+
+[node name="ten" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "#"
+
+[node name="eleven" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "0"
+
+[node name="twelve" type="Button" parent="safeUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_p1lue")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0cpwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0cpwa")
+text = "/"

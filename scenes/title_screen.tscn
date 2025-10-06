@@ -45,8 +45,11 @@ vertical_alignment = 1
 
 [node name="startButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "Click Here to Play"
+flat = true
 
 [node name="credits" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -69,30 +72,40 @@ text = "Check out our pages:"
 
 [node name="colby" type="LinkButton" parent="credits"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "BirdBoys"
 uri = "https://birdboys.itch.io/"
 
 [node name="reagan" type="LinkButton" parent="credits"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "Recarri"
 uri = "https://www.artstation.com/recari"
 
 [node name="kyle" type="LinkButton" parent="credits"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "DrSanic"
 uri = "https://drsanic.itch.io/"
 
 [node name="cole" type="LinkButton" parent="credits"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "Cole"
 uri = "https://coleverc.itch.io/"
 
 [node name="jake" type="LinkButton" parent="credits"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0.7254902, 0.50980395, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
 theme_override_font_sizes/font_size = 40
 text = "Jakasaurus"
 uri = "https://jakasaurus.itch.io/"

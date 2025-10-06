@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://duovwvyw4fbxe"]
 
 [ext_resource type="Shader" uid="uid://b8s1f03pckj5x" path="res://scripts/flashlight_mask.gdshader" id="1_1elf3"]
-[ext_resource type="Texture2D" uid="uid://yeuks4v1f77b" path="res://assets/temp/room_views_old/entrance.png" id="2_5tt0x"]
+[ext_resource type="Texture2D" uid="uid://bt10esjojr3cu" path="res://assets/temp/color_conversion_output/entrance.png" id="2_5tt0x"]
 [ext_resource type="PackedScene" uid="uid://bwumcsru8q88u" path="res://scenes/clicker_button.tscn" id="3_mpv4p"]
 [ext_resource type="FontFile" uid="uid://dy5663vj1t44k" path="res://assets/fonts/PixelifySans-Bold.ttf" id="4_5tt0x"]
 
@@ -36,37 +36,37 @@ metadata/_edit_lock_ = true
 
 [node name="stairsButton" parent="roomButtons" instance=ExtResource("3_mpv4p")]
 layout_mode = 0
-offset_left = 735.0
-offset_top = 64.0
-offset_right = 935.0
-offset_bottom = 373.0
+offset_left = 774.0
+offset_top = 9.0
+offset_right = 936.0
+offset_bottom = 318.0
 hover_text = "Go up stairs"
 button_id = "go_up_stairs"
 
-[node name="tableButton" parent="roomButtons" instance=ExtResource("3_mpv4p")]
-layout_mode = 0
-offset_left = 427.0
-offset_top = 204.0
-offset_right = 574.0
-offset_bottom = 295.0
-hover_text = "Go to table"
-button_id = "go_dining_room"
-
 [node name="livingButton" parent="roomButtons" instance=ExtResource("3_mpv4p")]
 layout_mode = 0
-offset_left = 538.0
-offset_top = 109.0
-offset_right = 739.0
-offset_bottom = 253.0
+offset_left = 543.0
+offset_top = 131.0
+offset_right = 714.0
+offset_bottom = 221.0
 hover_text = "Go to living room"
 button_id = "go_living_room"
+
+[node name="tableButton" parent="roomButtons" instance=ExtResource("3_mpv4p")]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 179.0
+offset_right = 577.0
+offset_bottom = 270.0
+hover_text = "Go to dining table"
+button_id = "go_dining_room"
 
 [node name="kitchenButton" parent="roomButtons" instance=ExtResource("3_mpv4p")]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 46.0
-offset_right = 417.0
-offset_bottom = 467.0
+offset_right = 377.0
+offset_bottom = 406.0
 hover_text = "Go to kitchen"
 button_id = "go_kitchen"
 

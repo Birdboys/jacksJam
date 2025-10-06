@@ -29,9 +29,9 @@ func _ready() -> void:
 	panelTabs.tab_changed.connect(toggleTaskInventoryPanels)
 	roomMargin.gui_input.connect(checkClearHeldItem)
 	#loadRoom("entrance")
-	#loadRoom("intro_phone")
+	loadRoom("front_door_test")
 	#await startSpooky()
-	loadRoom("bathroom")
+	#loadRoom("under_bed")
 	toggleTaskInventoryPanels(0)
 	addTask("answer_phone", "Answer the phone")
 	#startSpooky()
@@ -81,6 +81,10 @@ func loadRoom(room_name, do_transition=true):
 	current_room_resource = new_room_resource
 	current_room_scene = new_room_scene
 	
+	if current_room_scene.has_signal("safe_opened"):
+		current_room_scene.safe_opened.connect(safeOpened)
+		current_room_scene.safe_failed.connect(safeFailed)
+		
 	if do_transition:
 		roomTransitionAnim.play("transition_room_end")
 		await roomTransitionAnim.animation_finished
@@ -125,10 +129,10 @@ func loadText(t):
 	for x in range(len(t)):
 		#if not can_click: return
 		descriptionText.visible_characters += 1
-		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.1).timeout
+		if t[x] in [","," ",".","?","!"]: await get_tree().create_timer(0.5).timeout
 		else: 
 			AudioHandler.playSound("typewriter")
-			await get_tree().create_timer(0.05).timeout
+			await get_tree().create_timer(0.02).timeout
 		
 	descriptionText.visible_characters =  -1.0
 	can_click = true
@@ -275,7 +279,7 @@ func roomButtonPressed(button_event: String):
 			AudioHandler.playSound("coin_pickup")
 			loadText("My favorite part of the job is collecting coins… actually, I think it's spendin em’.") 
 			current_room_scene.tookCoins()
-			addInventoryItem("kitchen_coins", load("res://assets/temp/coins.jpeg"))
+			addInventoryItem("kitchen_coins", load("res://assets/inventory_icons/coins.png"))
 			
 		#UPSTAIRS BUTTONS
 		"go_down_stairs":
@@ -285,7 +289,7 @@ func roomButtonPressed(button_event: String):
 		"go_master_bedroom":
 			loadRoom("master_bedroom")
 		"go_kids_bedroom":
-			if TriggerHandler.took_bedroom_key:
+			if current_item == "bedroom_key":
 				AudioHandler.playSound("open_door")
 				loadRoom("kids_bedroom")
 			else:
@@ -300,7 +304,8 @@ func roomButtonPressed(button_event: String):
 				AudioHandler.playSound("static")
 				TriggerHandler.spirit_boxed_dining_room = true
 				TriggerHandler.has_emf = true
-				addInventoryItem("emf", load("res://assets/temp/emf.jpg"))
+				#removeInventoryItem("spirit_box")
+				addInventoryItem("emf", load("res://assets/inventory_icons/emf.png"))
 				completeTask("spirit_box")
 				addTask("emf", "Use emf in\nmaster bedroom")
 				current_room_scene.placedSpiritBox()
@@ -337,20 +342,21 @@ func roomButtonPressed(button_event: String):
 				clearHeldItem()
 				completeTask("salt_window")
 				addTask("spirit_box", "Use spirit box\nin dining room")
-				addInventoryItem("spirit_box", load("res://assets/temp/spirit_box.jpg"))
+				addInventoryItem("spirit_box", load("res://assets/inventory_icons/spirit_box.png"))
 			else:
 				loadText("I need salt to put on the window")
 				
 		#MASTER BEDROOM BUTTONS
 		"look_dresser":
 			loadRoom("master_bedroom_dresser")
-			
 		"look_master_bed":
 			if TriggerHandler.has_emf and current_item == "emf":
 				loadText("The metal detector is triggering... something must be under the bed.")
 				TriggerHandler.under_bed_found = true
 				current_room_scene.foundUnderBed()
 				AudioHandler.playSound("metal_detector")
+				completeTask("emf")
+				addTask("under_bed", "Check under the bed")
 			else:
 				loadText("It's a nice bed.")
 		"look_master_table":
@@ -360,8 +366,17 @@ func roomButtonPressed(button_event: String):
 			else:
 				loadText("What an ugly lamp.")
 		"look_under_bed":
-			loadText("Goin under.")
+			completeTask("under_bed")
+			loadText("Goin under...")
+			loadRoom("under_bed")
 			#loadRoom("under_bed")
+		
+		#UNDER BED BUTTONS
+		"open_safe": 
+			if TriggerHandler.took_counter_key:
+				loadText("Shame there was only a key, but I'm sure it'll come in handy somewhere.")
+			else:
+				loadText("Ooooh, a safe! There's gotta be something nice in here.")
 		
 		#MASTER BEDROOM DRESSER BUTTONS
 		"look_dresser_phone":
@@ -397,7 +412,14 @@ func roomButtonPressed(button_event: String):
 		"look_toilet":
 			loadText("Gah! Who didn't flush! Animals... animals I tell ya.")
 		"look_shelf":
-			loadText("I think there's something up there, but I can't reach it.")
+			if current_item == "grabber":
+				current_room_scene.journalFell()
+				TriggerHandler.knocked_journal_down = true
+				loadText("Success! Its... a journal. I guess I can read what's inside.")
+			else:
+				loadText("I think there's something up there, but I can't reach it.")
+		"look_journal":
+			loadText("It reads: \"First cubes, then rings, then cones, then spheres.\" What the heck Georgie?")
 		_: pass
 	clearHeldItem()
 		
@@ -417,6 +439,8 @@ func handleRoomEnterEvent(event_id):
 			
 func handleBackButtonPressed(room_id):
 	if not can_click: return
+	if room_id == "master_bedroom" and not TriggerHandler.is_spooky and current_room_resource.room_flashlight_on_event == "under_bed":
+		await startSpooky()
 	loadRoom(room_id)
 	
 func toggleTaskInventoryPanels(tab_id):
@@ -495,3 +519,14 @@ func startSpooky():
 	await loadText("Huh... the lights went out. Thank god for my flashlight. Let's leave.")
 	bottomUIAnim.play("load_flashlight")
 	AudioHandler.startSpookyShit()
+
+func safeOpened():
+	if not can_click: return
+	AudioHandler.playSound("open_door")
+	loadText("Haha! Yes! Open sesame. Oooh, there's a key inside.")
+	TriggerHandler.took_counter_key = true
+	addInventoryItem("counter_key", load("res://assets/inventory_icons/old_key.png"))
+	
+func safeFailed():
+	if not can_click: return
+	loadText("Damn, thats not the right combo...")
